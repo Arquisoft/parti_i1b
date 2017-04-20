@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Handling Form Submission</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+      <link rel="stylesheet" type="text/css" href="css/info.css"/>
+    
+</head>
+<body>
+	<table class = "table-fill">
+      <tr>
+        <td>Name:</td><td id="name"><span th:text="${citizen.firstName}"/></td>
+      </tr>
+      <tr>
+        <td>Surname:</td><td id="surname"><span th:text="${citizen.getLastName()}"/></td>
+      </tr>
+       <tr>
+        <td>Email:</td><td id="email"><span th:text="${citizen.email}"/></td>
+      </tr>
+      <tr>
+        <td>Date of birth:</td><td id="birth"><span th:text="${citizen.birthday}"/></td>
+      </tr>
+      <tr>
+        <td>Address:</td><td id="address"><span th:text="${citizen.address}"/></td>
+      </tr>
+      <tr>
+        <td>Nationality:</td><td id="nationality"><span th:text="${citizen.nationality}"/></td>
+      </tr>
+    </table>
+  </body>
+</html>

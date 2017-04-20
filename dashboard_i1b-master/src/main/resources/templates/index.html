@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="description" content="dashboard proyect"/>
+    <meta name="author" content="i1b"/>
+
+    <title>Dashboard_i1b</title>
+    
+    
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- MetisMenu CSS -->
+    <link href="css/metisMenu.min.css" rel="stylesheet" type="text/css"/>
+
+    <!-- Custom CSS -->
+    <link href="css/startmin.css" rel="stylesheet" type="text/css"/>
+
+    <!-- AwesomePics CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    
+    <!-- Table CSS -->
+    <link href="css/tabla.css" rel="stylesheet" type="text/css"/>
+     
+    <!-- chart CSS -->
+    <!-- En la función drawChart pasamos parametros -->
+    <!-- @david pasale los parametros a drawchart del numero de sis y nos -->
+    <link href="css/chart.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      function drawChart() {
+    	  var yes = document.getElementById("myTableLike").rows.length-1;
+    	  var no = document.getElementById("myTableDislike").rows.length-1;
+		  //
+        var data = google.visualization.arrayToDataTable([
+          ['Votes', 'Number of Votes'],
+          ['Likes',yes],
+          ['Dislikes', no],
+        ]);
+
+        var options = {
+          title: 'Chart Votes View'
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+    	//<![CDATA[
+	var source = new EventSource("/messages");
+	
+	source.onmessage = function (event) {
+		location.reload();
+	};
+	 //]]>
+	</script> 
+  </head>
+  <body>
+	
+	
+	<div id='prueba'> peofkn </div>
+	
+	
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ASW</a>
+        </div>
+
+
+        <!-- Top Navigation: Left Menu -->
+        <ul class="nav navbar-nav navbar-left navbar-top-links">
+            <li><a href="#"><i class="fa fa-home fa-fw"></i> I1B</a></li>
+        </ul>
+
+        <!-- Top Navigation: Right Menu -->
+        <ul class="nav navbar-right navbar-top-links">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i>AdminName<b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i>Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i>Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="#"><i class="fa fa-sign-out fa-fw"></i>Logout</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <!-- Sidebar -->
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="#" class="active"><i class="fa fa-dashboard fa-fw"></i>Dashboard</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div id="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Dashboard</h1>
+                </div>
+            </div>
+            
+            <h1>Table of Likes</h1>
+			
+			<table id="myTableLike">
+					<tr>
+					<th >Number</th>
+					<th>User</th>
+					<th>Proposal</th>
+					<th>Comment</th>
+			   </tr>
+			   <tr th:each="voter,iterationStatus  : ${votersLike}">
+					<td th:text="${iterationStatus.count}">1</td>
+					<td th:text="${voter.name}"></td>
+					<td th:text="${voter.proposal}"></td>
+					<td th:text="${voter.comment}"></td>
+			   </tr>
+			</table>
+			
+			<h1>Table of Dislikes</h1>
+			
+			<table id="myTableDislike">
+					<tr>
+					<th>Number</th>
+					<th>User</th>
+					<th>Proposal</th>
+					<th>Comment</th>
+			   </tr>
+			   <tr th:each="voter,iterationStatus  : ${votersDislike}">
+					<td th:text="${iterationStatus.count}">1</td>
+					<td th:text="${voter.name}"></td>
+					<td th:text="${voter.proposal}"></td>
+					<td th:text="${voter.comment}"></td>
+			   </tr>
+			</table>
+
+        </div>
+    </div>
+    <!-- chart Content -->
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+
+</div>
+<!-- jQuery -->
+<script src="js/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+<!-- Metis Menu Plugin JavaScript -->
+<script src="js/metisMenu.min.js"></script>
+</body>
+</html>

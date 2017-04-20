@@ -1,0 +1,24 @@
+CREATE TABLE CITIZEN(
+ 	id INTEGER NOT NULL PRIMARY KEY,
+ 	firstName VARCHAR(45) NOT NULL ,
+ 	lastName VARCHAR(45) NOT NULL ,
+ 	birthday DATE NOT NULL ,
+ 	email VARCHAR(45) NOT NULL ,
+ 	nif VARCHAR(45) NOT NULL ,
+ 	address VARCHAR(45) NOT NULL ,
+ 	nationality VARCHAR(45) NOT NULL ,
+ 	pollingStationCode INTEGER NOT NULL ,
+ 	password VARCHAR(45) NOT NULL
+ );
+
+INSERT INTO `citizen` (`id`, `first_name`, `last_name`, `birthday`, `email`, `nif`, `address`, `nationality`, `polling_station_code`, `password`) VALUES ('1', 'Alvaro', 'Suarez', '1999-01-01', 'alvaro@hotmail.com', '71743114L', 'test', 'spanish', '1' ,'1234');
+INSERT INTO `citizen` (`id`, `first_name`, `last_name`, `birthday`, `email`, `nif`, `address`, `nationality`, `polling_station_code`, `password`) VALUES ('2', 'David', 'Villamil', '1999-01-01', 'david@hotmail.com', '71743116L', 'test', 'spanish', '2' ,'12345');
+INSERT INTO `citizen` (`id`, `first_name`, `last_name`, `birthday`, `email`, `nif`, `address`, `nationality`, `polling_station_code`, `password`) VALUES ('3', 'Pablo', 'Roncero', '1999-01-01', 'pablo@hotmail.com', '71743124L', 'test', 'spanish', '3' ,'123456');
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (4,'calle abc','1990-05-21','user1@mail.com','user1','asw1','ESP','5368P','user1',5);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (5,'calle bcd','1992-09-12','user2@mail.com','user2','asw2','FRA','5154L','user1',6);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (6,'calle cde','1998-11-02','user3@mail.com','user3','asw3','ESP','1186B','user1',7);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (7,'calle def','1991-01-05','user4@mail.com','user4','asw4','POR','1256C','user1',8);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (8,'calle efg','1997-05-16','user5@mail.com','user5','asw5','ESP','9845K','user1',9);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (9,'calle fgh','1990-08-07','user6@mail.com','user6','asw6','ITA','1358H','user1',10);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (10,'calle ghi','1989-02-17','user7@mail.com','user7','asw7','ESP','5733S','user1',11);
+INSERT INTO `citizen` (`id`, `address`, `birthday`, `email`, `first_name`, `last_name`, `nationality`, `nif`, `password`, `polling_station_code`) VALUES (11,'calle hij','1996-12-01','user8@mail.com','user8','asw8','GER','6845R','user1',12);
