@@ -1,0 +1,109 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	<h:body>
+		<center>
+			<h1 style="margin-top: 20px">CONFIGURATION</h1>
+
+			<h:form>
+				<p:growl id="growl" sticky="true" showDetail="true" />
+				<p:wizard flowListener="#{configController.onFlowProcess}">
+					<p:tab id="words" title="Forbidden Words">
+						<p:fieldset legend="Info">
+							<h:outputText value="Configure the words that are not allowed.">
+							</h:outputText>
+						</p:fieldset>
+						<p:panel header="Forbidden Words">
+							<p:dataTable var="word" id="wordsTable"
+								value="#{configController.words}" selectionMode="single"
+								selection="#{configController.selectedWord}"
+								rowKey="#{word.getWord()}">
+								<p:column headerText="Current Forbidden Words">
+									<h:outputText value="#{word.getWord()}" />
+								</p:column>
+							</p:dataTable>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-trash"
+									action="#{configController.removeForbiddenWord}"
+									update="wordsTable" />
+								<p:inputText id="inputWord"
+									value="#{configController.addWordInput}" />
+								<p:commandButton value="Add"
+									action="#{configController.addForbiddenWord}"
+									update="wordsTable, inputWord" />
+								<p:messages id="messageWord" showDetail="true" autoUpdate="true"
+									closable="true" />
+							</f:facet>
+						</p:panel>
+					</p:tab>
+
+					<p:tab id="lifetime" title="Proposals lifetime">
+						<p:fieldset legend="Info">
+							<h:outputText
+								value="Set the maximum interval lifetime in days for a proposal to live.">
+							</h:outputText>
+							<br />
+						</p:fieldset>
+						<p:panel header="LIFETIME">
+							<h:outputText value="LIFETIME:  ">
+							</h:outputText>
+							<p:spinner id="lifetimeSpinner"
+								value="#{configController.lifetime}" min="0" />
+						</p:panel>
+					</p:tab>
+					
+					<p:tab id="minVotesTab" title="Minimum Votes">
+						<p:fieldset legend="Info">
+							<h:outputText
+								value="Set the minimum number of votes for a proposal to be accepted.">
+							</h:outputText>
+							<br />
+						</p:fieldset>
+						<p:panel header="Minimum Votes">
+							<h:outputText value="Minimum Votes:  ">
+							</h:outputText>
+							<p:spinner id="minVotesSpinner"
+								value="#{configController.minVotes}" min="0" />
+						</p:panel>
+					</p:tab>
+					
+					<p:tab id="categories" title="Categories">
+						<p:fieldset legend="Info">
+							<h:outputText value="Configure categories in which the proposals will be organized">
+							</h:outputText>
+						</p:fieldset>
+						<p:panel header="Categories">
+							<p:dataTable var="cat" id="catTable"
+								value="#{configController.actualCategories}" selectionMode="single"
+								selection="#{configController.selectedCategory}"
+								rowKey="#{cat.getName()}">
+								<p:column headerText="Current Categories">
+									<h:outputText value="#{cat.getName()}" />
+								</p:column>
+							</p:dataTable>
+
+							<f:facet name="footer">
+								<p:commandButton icon="ui-icon-trash"
+									action="#{configController.removeProvisionalCategory}"
+									update="catTable" />
+								<p:inputText id="inputCat"
+									value="#{configController.addCategoryInput}" />
+								<p:commandButton value="Add"
+									action="#{configController.addProvisionalCategory}"
+									update="catTable, inputCat" />
+								<p:messages id="messageCat" showDetail="true" autoUpdate="true"
+									closable="true" />
+							</f:facet>
+						</p:panel>
+					</p:tab>
+				</p:wizard>
+				<p:commandButton value="CONFIRM"	action="#{configController.saveConfig}"/>
+			</h:form>
+		</center>
+	</h:body>
+</f:view>

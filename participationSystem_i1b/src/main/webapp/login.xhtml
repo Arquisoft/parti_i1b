@@ -1,0 +1,22 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	<h:body>
+		<center>
+		<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
+			<h:form style="margin-top: 150px">
+				<p:panelGrid columns="2">
+					<h:outputLabel value="User:"></h:outputLabel>
+					<p:inputText value="#{loginController.user}" />
+					<h:outputLabel value="Password:"></h:outputLabel>
+					<p:password value="#{loginController.pass}" />
+				</p:panelGrid>
+				<p:commandButton value="Enter" action="#{loginController.logIn}" />
+			</h:form>
+		</center>
+	</h:body>
+</f:view>

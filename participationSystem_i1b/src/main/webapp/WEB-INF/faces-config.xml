@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<application>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver
+		</el-resolver>
+	</application>
+
+	<navigation-rule>
+		<from-view-id>login.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginController.logIn}</from-action>
+			<from-outcome>admin</from-outcome>
+			<to-view-id>/proposalListAdmin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>login.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{loginController.logIn}</from-action>
+			<from-outcome>citizen</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>proposalList.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.goToAddView}</from-action>
+			<from-outcome>addView</from-outcome>
+			<to-view-id>/addProposal.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{ProposalListController.selectProposal(proposal)}</from-action>
+			<from-outcome>goToView</from-outcome>
+			<to-view-id>/oneProposalView.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>proposalListAdmin.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.selectProposal(proposal)}</from-action>
+			<from-outcome>goToView</from-outcome>
+			<to-view-id>/oneProposalViewAdmin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>		
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>oneProposalView.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{ProposalListController.goToListView}</from-action>
+			<from-outcome>listView</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>addProposal.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{addProposal.addProposal}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>addProposal.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{addProposal.cancel}</from-action>
+			<from-outcome>cancel</from-outcome>
+			<to-view-id>/proposalList.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+</faces-config>

@@ -1,0 +1,43 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	<h:body>
+		<center>
+			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
+			<h:form style="margin-top: 50px">
+				<p:panel id="panel" header="Proposal Form"
+					style="margin-bottom:10px; width:50%">
+					<h:panelGrid columns="3" cellpadding="5">
+						<h:outputLabel value="Title:"></h:outputLabel>
+						<p:inputText value="#{addProposal.title}" >
+						</p:inputText>
+						<br />
+						<br />
+						<h:outputLabel value="Description:    "></h:outputLabel>
+						<p:inputTextarea rows="5" cols="30" counter="display"
+							value="#{addProposal.description}" maxlength="200"
+							counterTemplate="{0} characters remaining." autoResize="false"/>
+						<h:outputText id="display" />
+						<h:outputLabel for="category" value="Category:" />
+						<h:selectOneMenu value="#{addProposal.categoryName}" id="category">
+							<f:selectItems value="#{addProposal.categoriesName}" />
+						</h:selectOneMenu>
+						<br />
+						<br />
+						<br />
+					</h:panelGrid>
+					<p:messages id="message" showDetail="true" autoUpdate="true"
+						closable="true" />
+						<h:commandButton value="Cancel" action="#{addProposal.cancel}" />
+					<h:commandButton value="Save" action="#{addProposal.addProposal}" />
+					<br />
+					
+				</p:panel>
+			</h:form>
+		</center>
+	</h:body>
+</f:view>

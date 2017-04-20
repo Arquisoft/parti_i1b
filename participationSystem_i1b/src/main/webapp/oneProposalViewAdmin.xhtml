@@ -1,0 +1,48 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+	</h:head>
+	<h:body>
+		<center>
+			<h1 style="margin-top: 20px">Proposal View</h1>
+			<p:button href="proposalListAdmin.xhtml" value="Return to the main view" />
+			<h:form>
+				<p:fieldset legend="#{ProposalListController.title}"
+					style="margin:50px 50px 50px 50px; text-align: left; width:50%">
+					<h:panelGrid columns="2" cellpadding="5">
+						<p:panel style="text-align: center">
+							<h3>Description</h3>
+							<h:outputText value="#{ProposalListController.description}"
+								style="margin-right:50px" />
+						</p:panel>
+						<br />
+						<p:panel style="text-align: center">
+						<h3>Score</h3>
+						<h:outputText id="counter" value="#{ProposalListController.score}"
+							style="margin-left:10px" />
+						</p:panel>
+						<br />
+					</h:panelGrid>
+				</p:fieldset>
+				<p:messages id="messageErrProposal" showDetail="true" autoUpdate="true"
+									closable="true" />
+				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
+					<p:accordionPanel id="comments"
+						value="#{ProposalListController.showComments()}" var="comment"
+						style="float:left; margin-bottom:20px; " multiple="true">
+						<p:tab title="#{comment.getCitizen()}">
+							<h:panelGrid columns="2" cellpadding="10">
+								<h3>Description</h3>
+								<h:outputText value="#{comment.getText()}" />
+								<h3>Score</h3>
+								<h:outputText value="#{comment.getScore()}" />
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+				</p:panel>
+			</h:form>
+		</center>
+	</h:body>
+</f:view>

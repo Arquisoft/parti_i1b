@@ -1,0 +1,41 @@
+<f:view xmlns="http://www.w3c.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+	</h:head>
+	<h:body>
+		<center>
+			<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
+			<h:form>
+				<p:dataTable id="tablaListaProposals" var="proposal"
+					value="#{ProposalListController.showProposals()}"
+					sortMode="multiple" rows="8" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="8">
+					<f:facet name="header">Proposals</f:facet>
+					<p:column headerText="Title" sortBy="#{proposal.title}">
+						<h:outputText value="#{proposal.title}" />
+					</p:column>
+					<p:column headerText="Created" sortBy="#{proposal.creationDate}">
+						<h:outputText value="#{proposal.creationDate}" />
+					</p:column>
+					<p:column headerText="Score" sortBy="#{proposal.score}">
+						<h:outputText value="#{proposal.score}" />
+					</p:column>
+					<p:column>
+						<p:commandButton id="btn_View" value="View proposal"
+							action="#{ProposalListController.selectProposal(proposal)}"
+							update="tablaListaProposals">
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+				<p:commandButton id="btn_Add" value="Add" icon="ui-icon-plus"
+					action="#{ProposalListController.goToAddView}">
+				</p:commandButton>
+			</h:form>
+		</center>
+
+	</h:body>
+</f:view>
