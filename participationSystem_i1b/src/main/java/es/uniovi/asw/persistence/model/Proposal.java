@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -40,7 +41,8 @@ public class Proposal implements Serializable{
 	@OneToMany(mappedBy="proposal", cascade={CascadeType.ALL})
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
-
+	@Transient
+	private Boolean notified = false;
 	@ManyToOne
 	private Category category;
 
@@ -178,6 +180,14 @@ public class Proposal implements Serializable{
 		} else if (!title.equals(other.title))
 			return false;
 		return true;
+	}
+
+	public Boolean getNotified() {
+		return notified;
+	}
+
+	public void setNotified(Boolean notified) {
+		this.notified = notified;
 	}
 
 }

@@ -22,8 +22,8 @@ import es.uniovi.asw.persistence.model.ForbiddenWords;
 public class ConfigurationController {
 
 	private int lifetime;
-	private int minVotes;
-	private Configuration conf;
+	private static int minVotes;
+	private static Configuration conf;
 	private List<Category> oldCategories;
 	private List<Category> actualCategories;
 	private List<ForbiddenWords> words;
@@ -143,7 +143,7 @@ public class ConfigurationController {
 		this.lifetime = lifetime;
 	}
 
-	public Configuration getConf() {
+	public static Configuration getConf() {
 		return conf;
 	}
 
@@ -215,7 +215,7 @@ public class ConfigurationController {
 		this.addCategoryInput = addCategoryInput;
 	}
 
-	public int getMinVotes() {
+	public static int getMinVotes() {
 		return minVotes;
 	}
 

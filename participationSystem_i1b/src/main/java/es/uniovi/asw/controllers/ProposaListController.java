@@ -1,5 +1,6 @@
 package es.uniovi.asw.controllers;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -8,6 +9,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -31,11 +33,13 @@ public class ProposaListController {
 	private Factories factoria;
 
 	private Citizen citizen;
-	private List<Proposal> list;
+	private static List<Proposal> list;
 	private Proposal selectedProposal;
 	private List<Comment> comments;
 	private int score;
 	private String textComment;
+	private ArrayList<String> notificaciones = new ArrayList<String>();
+
 
 	@PostConstruct
 	public void init() {
@@ -43,6 +47,13 @@ public class ProposaListController {
 		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 	}
 	
+    public void showNotifications() {
+        FacesContext context = FacesContext.getCurrentInstance();
+                 
+        for (String s : getNotificaciones()) {
+            context.addMessage(null, new FacesMessage("Notification",  s));
+        }
+    }
 
 	public String getTitle() {
 		return title;
@@ -87,7 +98,7 @@ public class ProposaListController {
 	
 	public List<Proposal> showProposals()
 	{
-		 list = factoria.getServicesFactory().getProposalService().findAll();
+		list = factoria.getServicesFactory().getProposalService().findAll();
 		return list;
 	}
 	
@@ -217,5 +228,16 @@ public class ProposaListController {
 
 	public void setTextComment(String textComment) {
 		this.textComment = textComment;
+	}
+
+	public ArrayList<String> getNotificaciones() {
+			notificaciones.clear();
+			for (Proposal p : list) {
+				if (!p.getNotified()&&p.getScore()>ConfigurationController.getMinVotes()) {
+					notificaciones.add("Proposal: "+p.getTitle()+" enters the acceptance phase");
+					p.setNotified(true);
+				}
+			}
+			return notificaciones;
 	}
 }
