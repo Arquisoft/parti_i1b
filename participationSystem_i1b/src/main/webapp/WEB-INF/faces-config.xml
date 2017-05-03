@@ -11,7 +11,7 @@
 	</application>
 
 	<navigation-rule>
-		<from-view-id>login.xhtml</from-view-id>
+		<from-view-id>index.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginController.logIn}</from-action>
 			<from-outcome>admin</from-outcome>
@@ -21,7 +21,7 @@
 	</navigation-rule>
 
 	<navigation-rule>
-		<from-view-id>login.xhtml</from-view-id>
+		<from-view-id>index.xhtml</from-view-id>
 		<navigation-case>
 			<from-action>#{loginController.logIn}</from-action>
 			<from-outcome>citizen</from-outcome>

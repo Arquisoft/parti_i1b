@@ -40,8 +40,6 @@ public class Comment {
 		this.creationDate = creationDate;
 		this.score = score;
 	}
-	
-	
 
 	@Override
 	public int hashCode() {

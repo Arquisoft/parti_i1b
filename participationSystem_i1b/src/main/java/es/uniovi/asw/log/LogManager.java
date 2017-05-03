@@ -2,7 +2,6 @@ package es.uniovi.asw.log;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.util.List;
 
 public class LogManager {
 

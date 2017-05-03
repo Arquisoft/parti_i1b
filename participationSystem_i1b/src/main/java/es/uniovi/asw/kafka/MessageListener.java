@@ -1,12 +1,9 @@
 package es.uniovi.asw.kafka;
 
-import java.io.IOException;
-
 import javax.annotation.ManagedBean;
 
 import org.apache.log4j.Logger;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 /**
  * Created by herminio on 28/12/16.

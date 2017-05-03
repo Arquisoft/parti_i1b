@@ -1,5 +1,7 @@
 package es.uniovi.asw.controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -112,9 +114,18 @@ public class ProposaListController {
 		return "listView";
 	}
 	
-	public List<Comment> showComments()
+	public List<Comment> showComments(String sorting)
 	{
+	    
 		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
+
+		if (sorting.equals("score")) {
+			Collections.sort(comments, Comparator.comparing(Comment::getScore));
+		}
+		else if (sorting.equals("date")) {
+			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
+		}
+		
 		return comments;
 	}
 

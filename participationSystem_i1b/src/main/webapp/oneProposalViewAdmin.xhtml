@@ -29,8 +29,15 @@
 				<p:messages id="messageErrProposal" showDetail="true" autoUpdate="true"
 									closable="true" />
 				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
+				<p:commandButton value="Sort by score"
+							action="#{ProposalListController.showComments(score)}" update="comments"
+							immediate="true" />
+				<p:commandButton value="Sort by date"
+							action="#{ProposalListController.showComments(date)}" update="comments"
+							immediate="true" />
+				<p:separator />
 					<p:accordionPanel id="comments"
-						value="#{ProposalListController.showComments()}" var="comment"
+						value="#{ProposalListController.showComments(score)}" var="comment"
 						style="float:left; margin-bottom:20px; " multiple="true">
 						<p:tab title="#{comment.getCitizen()}">
 							<h:panelGrid columns="2" cellpadding="10">
