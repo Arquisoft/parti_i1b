@@ -7,7 +7,7 @@
 	</h:head>
 	<h:body>
 		<center>
-		<h1 style="margin-top: 20px">PARTICIPATION VOTING SYSTEM</h1>
+		<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
 			<h:form style="margin-top: 150px">
 				<p:panelGrid columns="2">
 					<h:outputLabel value="User:"></h:outputLabel>
@@ -15,7 +15,7 @@
 					<h:outputLabel value="Password:"></h:outputLabel>
 					<p:password value="#{loginController.pass}" />
 				</p:panelGrid>
-				<p:commandButton value="Enter" action="#{loginController.logIn}" />
+				<p:commandButton style="margin-top: 30px" value="Enter" action="#{loginController.logIn}" />
 			</h:form>
 		</center>
 	</h:body>

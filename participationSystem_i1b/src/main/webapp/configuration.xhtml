@@ -7,8 +7,14 @@
 	</h:head>
 	<h:body>
 		<center>
-			<h1 style="margin-top: 20px">CONFIGURATION</h1>
-
+		<p:toolbar>
+   			<p:toolbarGroup align="left">
+       			<p:outputLabel value="Configuration" />
+       		</p:toolbarGroup>
+       		<p:toolbarGroup align="right">
+       			<p:button href="proposalList.xhtml" value="Return to the main view" />
+   			</p:toolbarGroup>
+		</p:toolbar>
 			<h:form>
 				<p:growl id="growl" sticky="true" showDetail="true" />
 				<p:wizard flowListener="#{configController.onFlowProcess}">
