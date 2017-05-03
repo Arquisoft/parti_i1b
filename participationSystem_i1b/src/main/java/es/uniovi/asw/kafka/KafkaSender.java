@@ -9,6 +9,11 @@ import org.springframework.kafka.support.SendResult;
 import org.springframework.util.concurrent.ListenableFuture;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import es.uniovi.asw.persistence.model.Comment;
+import es.uniovi.asw.persistence.model.Proposal;
+import es.uniovi.asw.persistence.model.VoteComment;
+import es.uniovi.asw.persistence.model.VoteProposal;
+
 @ManagedBean
 public class KafkaSender {
 	
@@ -31,6 +36,27 @@ public class KafkaSender {
             }
         });
     }
+    
+    public void sendProposal(Proposal proposal)
+    {
+    	send("Proposal","New Proposal: "+proposal.getTitle()+"\n");
+    }
+    
+    public void sendComment(Comment com)
+    {
+    	send("Comment","New Comment: "+com.toString()+"\n");
+    }
+    
+    public void sendVoteComment(VoteComment com)
+    {
+    	send("VoteComment","New vote for Comment: "+com.getComment().toString()+"\n");
+    }
+    
+    public void sendVoteProposal(VoteProposal com)
+    {
+    	send("VoteProposal","New vote for Proposal: "+com.getProposal().getTitle()+"\n");
+    }
+    
     
 //    public void sendTestVoter(Voter voter) {
 //        send("Voter", voter.toString());
