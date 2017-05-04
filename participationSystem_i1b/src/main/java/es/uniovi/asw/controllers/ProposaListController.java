@@ -175,6 +175,7 @@ public class ProposaListController {
 				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+comments.get(0)+","+votoValue);
 		
 			}
+			sender.sendToLog("New vote for proposal: "+selectedProposal.getTitle());
 			}
 	}
 	
@@ -206,6 +207,8 @@ public class ProposaListController {
 			factoria.getServicesFactory().getVoteService().save(vote);
 			comment.setScore(comment.getScore()+1);
 			factoria.getServicesFactory().getCommentService().save(comment);
+			KafkaSender sender = new KafkaSender();
+			sender.sendToLog("New vote for a comment created in "+selectedProposal.getTitle());
 		}
 	}
 
@@ -214,6 +217,9 @@ public class ProposaListController {
 		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
 		textComment = "";
 		factoria.getServicesFactory().getCommentService().save(coment);
+		KafkaSender sender = new KafkaSender();
+		sender.sendComment(coment);
+		sender.sendToLog("New comment created in "+selectedProposal.getTitle());
 	}
 
 	public List<Comment> getComments() {

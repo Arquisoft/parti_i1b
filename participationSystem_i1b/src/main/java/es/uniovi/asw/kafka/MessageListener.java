@@ -5,6 +5,8 @@ import javax.annotation.ManagedBean;
 import org.apache.log4j.Logger;
 import org.springframework.kafka.annotation.KafkaListener;
 
+import es.uniovi.asw.log.LogManager;
+
 /**
  * Created by herminio on 28/12/16.
  */
@@ -35,5 +37,12 @@ public class MessageListener {
 		//				e.printStackTrace();
 		//			}
 		//        System.out.println(data);
+	}
+	
+	@KafkaListener(topics = "ToLog")
+	public void listenLog(String log) {
+		
+		LogManager man= new LogManager();
+		man.addToLog(log);
 	}
 }

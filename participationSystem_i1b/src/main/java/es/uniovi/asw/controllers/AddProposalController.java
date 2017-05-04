@@ -13,6 +13,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import es.uniovi.asw.infraestructure.Factories;
+import es.uniovi.asw.kafka.KafkaSender;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Configuration;
@@ -60,6 +61,9 @@ public class AddProposalController {
 			if(!factoria.getServicesFactory().getProposalService().alreadyExists(proposal))
 			{
 				factoria.getServicesFactory().getProposalService().save(proposal);
+				KafkaSender sender = new KafkaSender();
+				sender.sendProposal(proposal);
+				sender.sendToLog("New proposal "+proposal.getTitle()+" created");
 				return "success";
 			}
 			else {

@@ -42,6 +42,11 @@ public class KafkaSender {
     	send("Proposal","New Proposal: "+proposal.getTitle()+"\n");
     }
     
+    public void sendToLog(String log)
+    {
+    	send("ToLog","Log entry: "+log+"\n");
+    }
+    
     public void sendComment(Comment com)
     {
     	send("Comment","New Comment: "+com.toString()+"\n");
