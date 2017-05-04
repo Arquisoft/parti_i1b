@@ -31,7 +31,10 @@
 						</p:panel>
 						<br />
 						<p:commandButton icon="ui-icon-circle-arrow-n"
-							action="#{ProposalListController.voteProposal}" update="counter"
+							action="#{ProposalListController.voteProposal(1)}" update="counter"
+							immediate="true" />
+							<p:commandButton icon="ui-icon-circle-arrow-s"
+							action="#{ProposalListController.voteProposal(-1)}" update="counter"
 							immediate="true" />
 					</h:panelGrid>
 				</p:fieldset>

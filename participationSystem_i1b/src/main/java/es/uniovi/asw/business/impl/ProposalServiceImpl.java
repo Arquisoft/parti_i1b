@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import es.uniovi.asw.business.ProposalService;
 import es.uniovi.asw.infraestructure.Factories;
+import es.uniovi.asw.kafka.KafkaSender;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
 
 @Service
 public class ProposalServiceImpl implements ProposalService{
+	
 	
 	@Autowired
 	private Factories factories;

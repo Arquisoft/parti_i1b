@@ -36,7 +36,7 @@ public class KafkaSender {
             }
         });
     }
-    
+    //user,proposal,comment,like/dislike
     public void sendProposal(Proposal proposal)
     {
     	send("Proposal","New Proposal: "+proposal.getTitle()+"\n");
@@ -56,6 +56,13 @@ public class KafkaSender {
     {
     	send("VoteProposal","New vote for Proposal: "+com.getProposal().getTitle()+"\n");
     }
+    
+    public void sendDashboard(String text)
+    {
+    	send("Dashboard",text);
+    }
+    
+    
     
     
 //    public void sendTestVoter(Voter voter) {

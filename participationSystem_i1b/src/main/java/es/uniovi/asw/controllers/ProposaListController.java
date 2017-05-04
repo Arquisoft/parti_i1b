@@ -16,6 +16,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import es.uniovi.asw.infraestructure.Factories;
+import es.uniovi.asw.kafka.KafkaSender;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
@@ -31,6 +32,7 @@ public class ProposaListController {
 	private String description;
 	@Autowired
 	private Factories factoria;
+	
 
 	private Citizen citizen;
 	private static List<Proposal> list;
@@ -140,7 +142,7 @@ public class ProposaListController {
 		return comments;
 	}
 
-	public void voteProposal(){
+	public void voteProposal(int votoValue){
 		//System.out.println("votando");
 		
 //		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);		
@@ -163,7 +165,17 @@ public class ProposaListController {
 			score = selectedProposal.getScore()+1;
 			selectedProposal.setScore(score);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
-		}
+			KafkaSender sender = new KafkaSender();
+			if(comments.isEmpty())
+			{
+				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+","+votoValue);
+			}
+			else
+			{
+				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+comments.get(0)+","+votoValue);
+		
+			}
+			}
 	}
 	
 	private void errorAlreadyVoteProposal() {

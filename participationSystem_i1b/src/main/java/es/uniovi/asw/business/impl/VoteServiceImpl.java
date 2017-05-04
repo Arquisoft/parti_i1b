@@ -18,7 +18,6 @@ public class VoteServiceImpl implements VoteService{
 
 	@Override
 	public void save(Vote vote) {
-		
 		factories.getPersistenceFactory().getVoteRepository().save(vote);
 	}
 	//cast it to voteComment when u iterate over it
