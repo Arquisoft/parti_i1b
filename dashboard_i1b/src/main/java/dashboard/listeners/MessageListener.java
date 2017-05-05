@@ -19,14 +19,15 @@ public class MessageListener {
 
     private static final Logger logger = Logger.getLogger(MessageListener.class);
 
-    @KafkaListener(topics = "test")
+    @KafkaListener(topics = "Dashboard")
     public void listen(String data) {
         logger.info("New message received: \"" + data + "\"");
+        System.out.println("New message received: \"" + data + "\"");
         
         String[] message = data.split(",");
         
         Voter voter = new Voter(message[0], message[1], message[2], message[3]);
-        if(message[1].equals("like"))
+        if(message[1].equals("1"))
         	MainController.votersLike.add(voter);
         else
         	MainController.votersDislike.add(voter); 

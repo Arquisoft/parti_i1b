@@ -31,6 +31,7 @@ public class LoginController {
 		}
 		else if(cit!=null) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", cit);
+			System.out.println("-------------------------------"+cit.getFirstName());
 			return "citizen";
 		}
 		else {

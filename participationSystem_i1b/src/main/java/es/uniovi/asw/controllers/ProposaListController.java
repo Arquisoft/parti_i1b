@@ -32,6 +32,9 @@ public class ProposaListController {
 	private String description;
 	@Autowired
 	private Factories factoria;
+	@Autowired
+	private KafkaSender sender;
+
 	
 
 	private Citizen citizen;
@@ -144,7 +147,7 @@ public class ProposaListController {
 
 	public void voteProposal(int votoValue){
 		//System.out.println("votando");
-		
+		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 //		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);		
 //		List<VoteProposal> votesProposal = new ArrayList<VoteProposal>();
 //		for(Vote vote:votes)
@@ -165,7 +168,6 @@ public class ProposaListController {
 			score = selectedProposal.getScore()+1;
 			selectedProposal.setScore(score);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
-			KafkaSender sender = new KafkaSender();
 			if(comments.isEmpty())
 			{
 				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+","+votoValue);
