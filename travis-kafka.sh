@@ -2,7 +2,6 @@
 
 set -eu
 
-# https://www.apache.org/dyn/closer.cgi?path=/kafka/0.10.2.0/kafka_2.11-0.10.2.0.tgz
 MIRROR=http://mirror.ox.ac.uk/sites/rsync.apache.org/kafka/0.10.2.0/kafka_2.11-0.10.2.0.tgz
 
 test -f kafka.tgz || wget $MIRROR -O kafka.tgz
