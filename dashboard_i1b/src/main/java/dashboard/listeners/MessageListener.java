@@ -26,7 +26,7 @@ public class MessageListener {
         
         String[] message = data.split(",");
         
-        Voter voter = new Voter(message[0], message[1], message[2], message[3]);
+        Voter voter = new Voter(message[0], message[1], message[3], message[2]);
         if(message[1].equals("1"))
         	MainController.votersLike.add(voter);
         else
