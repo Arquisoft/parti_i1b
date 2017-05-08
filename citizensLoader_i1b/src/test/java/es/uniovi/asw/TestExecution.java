@@ -12,7 +12,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import cucumber.api.java.After;
 import es.uniovi.asw.LoadUsers;
 import es.uniovi.asw.model.Citizen;
 import es.uniovi.asw.parser.CitizenInfo;
