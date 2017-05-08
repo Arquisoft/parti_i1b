@@ -165,7 +165,7 @@ public class ProposaListController {
 		}
 		else{
 			factoria.getServicesFactory().getVoteService().save(vote);
-			score = selectedProposal.getScore()+1;
+			score = selectedProposal.getScore()+votoValue;
 			selectedProposal.setScore(score);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
 			if(comments.isEmpty())
@@ -177,6 +177,7 @@ public class ProposaListController {
 				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+comments.get(0)+","+votoValue);
 		
 			}
+			//System.out.println(votoValue+"raaaaaaaaaaaaa"+selectedProposal.getScore());
 			sender.sendToLog("New vote for proposal: "+selectedProposal.getTitle());
 			}
 	}
@@ -209,7 +210,6 @@ public class ProposaListController {
 			factoria.getServicesFactory().getVoteService().save(vote);
 			comment.setScore(comment.getScore()+1);
 			factoria.getServicesFactory().getCommentService().save(comment);
-			KafkaSender sender = new KafkaSender();
 			sender.sendToLog("New vote for a comment created in "+selectedProposal.getTitle());
 		}
 	}
@@ -219,7 +219,6 @@ public class ProposaListController {
 		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
 		textComment = "";
 		factoria.getServicesFactory().getCommentService().save(coment);
-		KafkaSender sender = new KafkaSender();
 		sender.sendComment(coment);
 		sender.sendToLog("New comment created in "+selectedProposal.getTitle());
 	}

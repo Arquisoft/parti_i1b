@@ -36,6 +36,8 @@ public class AddProposalController {
 
 	@Autowired
 	private Factories factoria;
+	@Autowired
+	private KafkaSender sender;
 
 	@PostConstruct
 	public void init() {
@@ -61,7 +63,6 @@ public class AddProposalController {
 			if(!factoria.getServicesFactory().getProposalService().alreadyExists(proposal))
 			{
 				factoria.getServicesFactory().getProposalService().save(proposal);
-				KafkaSender sender = new KafkaSender();
 				sender.sendProposal(proposal);
 				sender.sendToLog("New proposal "+proposal.getTitle()+" created");
 				return "success";
