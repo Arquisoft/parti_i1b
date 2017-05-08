@@ -25,9 +25,10 @@ public class MessageListener {
         System.out.println("New message received: \"" + data + "\"");
         
         String[] message = data.split(",");
-        
-        Voter voter = new Voter(message[0], message[1], message[3], message[2]);
-        if(message[1].equals("1"))
+
+        //Diego,New payment,Good idea,-1
+        Voter voter = new Voter(message[0], message[2], message[1], message[2]);
+        if(message[3].equals("1"))
         	MainController.votersLike.add(voter);
         else
         	MainController.votersDislike.add(voter); 

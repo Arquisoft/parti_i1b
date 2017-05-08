@@ -170,7 +170,7 @@ public class ProposaListController {
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
 			if(comments.isEmpty())
 			{
-				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+","+votoValue);
+				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+", "+","+votoValue);
 			}
 			else
 			{

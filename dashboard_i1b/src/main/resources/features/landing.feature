@@ -2,7 +2,7 @@
 Feature: Open the dashboard view
  
   Scenario: Open view and receive message
-    Given a list of proposals:
+    Given a list of votes:
     | name | vote | proposal | comment |
     | "Alvaro" | "like" | "cucumber" | "jirafa" | 
     | "Pablo" | "dislike" | "cucumber" | "gorila" | 
