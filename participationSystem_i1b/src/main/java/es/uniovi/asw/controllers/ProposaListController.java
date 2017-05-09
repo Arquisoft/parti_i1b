@@ -44,7 +44,7 @@ public class ProposaListController {
 	@PostConstruct
 	public void init() {
 		list = factoria.getServicesFactory().getProposalService().findAll();
-		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");		
 	}
 
 	public void showNotifications() {
@@ -105,7 +105,7 @@ public class ProposaListController {
 		title = selectedProposal.getTitle();
 		description = selectedProposal.getDescription();
 		score = selectedProposal.getScore();
-
+		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
 		return "goToView";
 	}
 
@@ -121,25 +121,50 @@ public class ProposaListController {
 		System.out.println("back");
 		return "listView";
 	}
-
-	public List<Comment> showComments(String sorting) {
-		System.out.println("SHOW COMMENTS:");
-		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
-		System.out.println("Unordered comments:");
-		for(int i = 0; i<comments.size();i++){
-			System.out.println(comments.get(i));
-		}
-		if ("score".equals(sorting)) {
-			Collections.sort(comments, Comparator.comparing(Comment::getScore));
-			System.out.println("\nOrdered comments:");
-			for(int i = 0; i<comments.size();i++){
-				System.out.println(comments.get(i));
+	
+	public List<Comment> showOrderedByScore() {
+		//comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
+		List<Comment> aux = new ArrayList<Comment>(comments);
+		aux.sort(new Comparator<Comment>() {
+	        @Override
+			public int compare(Comment o1, Comment o2) {
+				return Integer.compare(o1.getScore(), o2.getScore());
 			}
-		} else if ("date".equals(sorting)) {
-			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
-		}
-		
+		});
+		comments = new ArrayList<Comment>();
+		comments.addAll(aux);
 		return comments;
+	}
+	
+	public List<Comment> showOrderedByDate() {
+		//comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
+		comments.sort(new Comparator<Comment>() {
+	        @Override
+			public int compare(Comment o1, Comment o2) {
+				return o1.getCreationDate().compareTo(o2.getCreationDate());
+			}
+		});
+		return comments;
+	}
+
+	public List<Comment> showComments() {
+//		System.out.println("SHOW COMMENTS:");
+//		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
+//		System.out.println("Unordered comments:");
+//		for(int i = 0; i<comments.size();i++){
+//			System.out.println(comments.get(i));
+//		}
+//		if ("score".equals(sorting)) {
+//			Collections.sort(comments, Comparator.comparing(Comment::getScore));
+//			System.out.println("\nOrdered comments:");
+//			for(int i = 0; i<comments.size();i++){
+//				System.out.println(comments.get(i));
+//			}
+//		} else if ("date".equals(sorting)) {
+//			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
+//		}
+//		
+		return this.comments;
 	}
 
 	@Override

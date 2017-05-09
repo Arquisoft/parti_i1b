@@ -53,132 +53,86 @@ public class Application extends SpringBootServletInitializer implements Servlet
 
 	@Override
 	public void run(String... arg0) throws Exception {
-//		
+		
 		
 		//todos los usuarios, todos los votos, todas las propuestas
 		// creates admin
-//		Administrator admin = new Administrator("admin", "admin");
-//
-//		// creates citizens
-//		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa",
-//				"española", 47);
-//		nacho.setPassword("nacho");
-//		Citizen gabriel = new Citizen("Gabriel", "del Reguero", new Date(), "torrente@test.com", "58430888D", "hermida",
-//				"española", 48);
-//		gabriel.setPassword("gabriel");
-//		Citizen diego = new Citizen("Diego", "akks", new Date(), "emailprueba@test.com", "3423406F", "casa2",
-//				"española", 49);
-//		diego.setPassword("diego");
-//		Citizen muhlah = new Citizen("asdd", "Muhlah", new Date(), "emailprueba2@test.com", "9738488H", "casa3",
-//				"española", 50);
-//		muhlah.setPassword("muhlah");
-//
-//		Category categoria1 = new Category("General");
-//		Category categoria2 = new Category("Law");
-//		Category categoria3 = new Category("Economy");
-//
-//		// save categories
-//		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria1.getName()) == null) {
-//			factoria.getServicesFactory().getCategoryService().save(categoria1);
-//
-//		}
-//		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria2.getName()) == null) {
-//			factoria.getServicesFactory().getCategoryService().save(categoria2);
-//
-//		}
-//		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria3.getName()) == null) {
-//			factoria.getServicesFactory().getCategoryService().save(categoria3);
-//
-//		}
-//		// saves citizens
-//		if (factoria.getServicesFactory().getCitizenService().findByEmail(diego.getEmail()) == null)
-//			factoria.getServicesFactory().getCitizenService().save(diego);
-//		if (factoria.getServicesFactory().getCitizenService().findByEmail(muhlah.getEmail()) == null)
-//			factoria.getServicesFactory().getCitizenService().save(muhlah);
-//		if (factoria.getServicesFactory().getCitizenService().findByEmail(nacho.getEmail()) == null)
-//			factoria.getServicesFactory().getCitizenService().save(nacho);
-//		if (factoria.getServicesFactory().getCitizenService().findByEmail(gabriel.getEmail()) == null)
-//			factoria.getServicesFactory().getCitizenService().save(gabriel);
-//		// save admin
-//		if (factoria.getServicesFactory().getAdministratorService().checkLogin(admin.getUsername(),
-//				admin.getPassword()) == null)
-//			factoria.getServicesFactory().getAdministratorService().save(admin);
-//
-//		Proposal proposal1 = new Proposal("New law", "we want to create a new law that forces people to wear hats",
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(gabriel.getEmail()), 0, new Date(),
-//				factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria2.getName()));
-//		Proposal proposal2 = new Proposal("New payment", "Everybody need to pay me 20 bucks",
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()), 0, new Date(),
-//				factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria3.getName()));
-//
-//		// save proposals
-//		// save proposals
-//		if (!factoria.getServicesFactory().getProposalService().alreadyExists(proposal1)) {
-//			factoria.getServicesFactory().getProposalService().save(proposal1);
-//		}
-//		if (!factoria.getServicesFactory().getProposalService().alreadyExists(proposal2)) {
-//			factoria.getServicesFactory().getProposalService().save(proposal2);
-//
-//		}
-//
-//		proposal2 = factoria.getPersistenceFactory().getProposalRepository().findByTitle(proposal2.getTitle());
-//		proposal1 = factoria.getPersistenceFactory().getProposalRepository().findByTitle(proposal1.getTitle());
-//
-//		Comment comment1 = new Comment("Good idea", proposal2,
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(gabriel.getEmail()), new Date(), 0);
-//		Comment comment2 = new Comment("I disagree", proposal1,
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), new Date(), 0);
-//
-//		if (factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).isEmpty())
-//			factoria.getServicesFactory().getCommentService().save(comment1);
-//		if (factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).isEmpty())
-//			factoria.getServicesFactory().getCommentService().save(comment2);
+		Administrator admin = new Administrator("admin", "admin");
 
-		// save
+		// creates citizens
+		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa",
+				"española", 47);
+		nacho.setPassword("nacho");
+		Citizen gabriel = new Citizen("Gabriel", "del Reguero", new Date(), "torrente@test.com", "58430888D", "hermida",
+				"española", 48);
+		gabriel.setPassword("gabriel");
+		Citizen diego = new Citizen("Diego", "akks", new Date(), "emailprueba@test.com", "3423406F", "casa2",
+				"española", 49);
+		diego.setPassword("diego");
+		Citizen muhlah = new Citizen("asdd", "Muhlah", new Date(), "emailprueba2@test.com", "9738488H", "casa3",
+				"española", 50);
+		muhlah.setPassword("muhlah");
 
-//		VoteComment vote = new VoteComment(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()),
-//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).get(0),+1);
-//		VoteComment vote1 = new VoteComment(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()),
-//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).get(0),+1);
-//		VoteProposal vote2 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal1,+1);
-//		VoteProposal vote3 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal2,-1);
-//		VoteProposal vote4 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()), proposal1, +1);
-//
-//		// save votes		
-//			factoria.getServicesFactory().getVoteService().save(vote1);
-//			int score1 = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0)
-//					.getScore() + 1;
-//			Comment comment = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0);
-//			comment.setScore(score1);
-//			factoria.getServicesFactory().getCommentService().save(comment);
-//
-//			factoria.getServicesFactory().getVoteService().save(vote2);
-//			int score = proposal2.getScore() + 1;
-//			proposal2.setScore(score);
-//			factoria.getServicesFactory().getProposalService().save(proposal2);
-//			factoria.getServicesFactory().getVoteService().save(vote3);
-//			score = proposal1.getScore() + 1;
-//			proposal1.setScore(score);
-//			factoria.getServicesFactory().getProposalService().save(proposal1);
-//	
-//		
-//			factoria.getServicesFactory().getVoteService().save(vote);
-//			int score1 = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0)
-//					.getScore() + 1;
-//			Comment comment = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0);
-//			comment.setScore(score1);
-//			factoria.getServicesFactory().getCommentService().save(comment);
-//
-//			factoria.getServicesFactory().getVoteService().save(vote4);
-//			int score = proposal1.getScore() + 1;
-//			proposal1.setScore(score);
-//			factoria.getServicesFactory().getProposalService().save(proposal1);
-//		}
+		Category categoria1 = new Category("General");
+		Category categoria2 = new Category("Law");
+		Category categoria3 = new Category("Economy");
+
+		// save categories
+		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria1.getName()) == null) {
+			factoria.getServicesFactory().getCategoryService().save(categoria1);
+
+		}
+		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria2.getName()) == null) {
+			factoria.getServicesFactory().getCategoryService().save(categoria2);
+
+		}
+		if (factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria3.getName()) == null) {
+			factoria.getServicesFactory().getCategoryService().save(categoria3);
+
+		}
+		// saves citizens
+		if (factoria.getServicesFactory().getCitizenService().findByEmail(diego.getEmail()) == null)
+			factoria.getServicesFactory().getCitizenService().save(diego);
+		if (factoria.getServicesFactory().getCitizenService().findByEmail(muhlah.getEmail()) == null)
+			factoria.getServicesFactory().getCitizenService().save(muhlah);
+		if (factoria.getServicesFactory().getCitizenService().findByEmail(nacho.getEmail()) == null)
+			factoria.getServicesFactory().getCitizenService().save(nacho);
+		if (factoria.getServicesFactory().getCitizenService().findByEmail(gabriel.getEmail()) == null)
+			factoria.getServicesFactory().getCitizenService().save(gabriel);
+		// save admin
+		if (factoria.getServicesFactory().getAdministratorService().checkLogin(admin.getUsername(),
+				admin.getPassword()) == null)
+			factoria.getServicesFactory().getAdministratorService().save(admin);
+
+		Proposal proposal1 = new Proposal("New law", "we want to create a new law that forces people to wear hats",
+				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(gabriel.getEmail()), 0, new Date(),
+				factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria2.getName()));
+		Proposal proposal2 = new Proposal("New payment", "Everybody need to pay me 20 bucks",
+				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()), 0, new Date(),
+				factoria.getPersistenceFactory().getCategoryRepository().findByName(categoria3.getName()));
+
+		 
+		if (!factoria.getServicesFactory().getProposalService().alreadyExists(proposal1)) {
+			factoria.getServicesFactory().getProposalService().save(proposal1);
+		}
+		if (!factoria.getServicesFactory().getProposalService().alreadyExists(proposal2)) {
+			factoria.getServicesFactory().getProposalService().save(proposal2);
+
+		}
+
+		proposal2 = factoria.getPersistenceFactory().getProposalRepository().findByTitle(proposal2.getTitle());
+		proposal1 = factoria.getPersistenceFactory().getProposalRepository().findByTitle(proposal1.getTitle());
+
+		Comment comment1 = new Comment("Good idea", proposal2,
+				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(gabriel.getEmail()), new Date(), 0);
+		Comment comment2 = new Comment("I disagree", proposal1,
+				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), new Date(), 0);
+
+		if (factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).isEmpty())
+			factoria.getServicesFactory().getCommentService().save(comment1);
+		if (factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).isEmpty())
+			factoria.getServicesFactory().getCommentService().save(comment2);
+		 
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findAllProposalVotes();
 		
 		for (Vote v : votes) {
