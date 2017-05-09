@@ -7,6 +7,11 @@
 [![codecov](https://codecov.io/gh/Arquisoft/parti_i1b/branch/multimodule/graph/badge.svg)](https://codecov.io/gh/Arquisoft/parti_i1b)
 
 # Participation
+## Modules
+### citizensLoader
+### dashboard
+### participants
+### participationSystem
 ## Functionality overview
 ## How to run
 ```
