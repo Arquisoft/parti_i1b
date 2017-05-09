@@ -27,7 +27,7 @@ public class ExecutionTest {
 	public void init() throws Exception {
 		citizensInfo = new ArrayList<CitizenInfo>();
 		inserter = new InsertR();
-		LoadUsers.main("-f src/main/resources/ejemplo.xlsx", "-f src/main/resources/ejemplo.xlsx", "-l docx", "-l txt");
+		LoadUsers.main("-f src/test/resources/ejemplo.xlsx", "-f src/test/resources/ejemplo.xlsx", "-l docx", "-l txt");
 	}
 
 	private Date createDate(String dateStr) {
