@@ -8,7 +8,10 @@
 	</h:head>
 	<h:body>
 		<center>
-			<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
+			<div>
+				<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
+				<p:button value="Log Out" href="index.xhtml" action="#{loginController.logOut}"/>
+			</div>
 			<p:fieldset legend="Info" style="text-align:left">
 				<h:outputText value="You can delete non-appropiate proposals">
 				</h:outputText>

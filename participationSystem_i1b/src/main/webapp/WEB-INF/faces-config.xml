@@ -55,6 +55,16 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<from-view-id>configuration.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{configController.saveConfig}</from-action>
+			<from-outcome>saved</from-outcome>
+			<to-view-id>/proposalListAdmin.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 	<navigation-rule>
 		<from-view-id>oneProposalView.xhtml</from-view-id>

@@ -7,7 +7,10 @@
 	</h:head>
 	<h:body>
 		<center>
-			<h1 class="title ui-widget-header ui-corner-all">ParticipationVotingSystem</h1>
+			<div>
+				<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
+				<p:button value="Log Out" href="index.xhtml" action="#{loginController.logOut}"/>
+			</div>
 			<h:form>
 				<p:dataTable id="tablaListaProposals" var="proposal"
 					value="#{ProposalListController.showProposals()}"

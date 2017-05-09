@@ -23,7 +23,7 @@ public class ConfigurationController {
 
 	private int lifetime;
 	private int minVotes;
-	private static Configuration conf;
+	private Configuration conf;
 	private List<Category> oldCategories;
 	private List<Category> actualCategories;
 	private List<ForbiddenWords> words;
@@ -138,12 +138,12 @@ public class ConfigurationController {
 		this.lifetime = lifetime;
 	}
 
-	public static Configuration getConf() {
+	public Configuration getConf() {
 		return conf;
 	}
 
 	public void setConf(Configuration conf) {
-		ConfigurationController.conf = conf;
+		this.conf = conf;
 	}
 
 	public List<Category> getOldCategories() {

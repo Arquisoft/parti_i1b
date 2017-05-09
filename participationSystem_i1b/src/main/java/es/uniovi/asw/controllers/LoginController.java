@@ -45,6 +45,11 @@ public class LoginController {
 		// }
 		// return "error";
 	}
+	
+	public String logOut() {
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", null);
+		return "logOut";
+	}
 
 	public String getUser() {
 		return user;
