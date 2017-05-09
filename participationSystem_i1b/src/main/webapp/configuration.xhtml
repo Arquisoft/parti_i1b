@@ -12,7 +12,7 @@
        			<p:outputLabel value="Configuration" />
        		</p:toolbarGroup>
        		<p:toolbarGroup align="right">
-       			<p:button href="proposalList.xhtml" value="Return to the main view" />
+       			<p:button href="proposalListAdmin.xhtml" value="Return to the main view" />
    			</p:toolbarGroup>
 		</p:toolbar>
 			<h:form>
@@ -108,7 +108,7 @@
 						</p:panel>
 					</p:tab>
 				</p:wizard>
-				<p:commandButton value="CONFIRM"	action="#{configController.saveConfig}"/>
+				<p:button value="CONFIRM" href="proposalListAdmin.xhtml" action="#{configController.saveConfig}"/>
 			</h:form>
 		</center>
 	</h:body>

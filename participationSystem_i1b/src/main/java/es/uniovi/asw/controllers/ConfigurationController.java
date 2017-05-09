@@ -22,7 +22,7 @@ import es.uniovi.asw.persistence.model.ForbiddenWords;
 public class ConfigurationController {
 
 	private int lifetime;
-	private static int minVotes;
+	private int minVotes;
 	private static Configuration conf;
 	private List<Category> oldCategories;
 	private List<Category> actualCategories;
@@ -126,7 +126,8 @@ public class ConfigurationController {
 		conf.setDeadline(lifetime);
 		conf.setMinVotesToAcceptProposal(minVotes);
 		factoria.getServicesFactory().getConfigurationService().save(conf);
-		return "confSaved";
+		System.out.println("saved");
+		return "saved";
 	}
 
 	public int getLifetime() {
@@ -209,12 +210,12 @@ public class ConfigurationController {
 		this.addCategoryInput = addCategoryInput;
 	}
 
-	public static int getMinVotes() {
+	public int getMinVotes() {
 		return minVotes;
 	}
 
 	public void setMinVotes(int minVotes) {
-		ConfigurationController.minVotes = minVotes;
+		this.minVotes = minVotes;
 	}
 
 }

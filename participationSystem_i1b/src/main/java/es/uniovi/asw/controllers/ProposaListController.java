@@ -236,7 +236,7 @@ public class ProposaListController {
 	public ArrayList<String> getNotificaciones() {
 		notificaciones.clear();
 		for (Proposal p : list) {
-			if (!p.getNotified() && p.getScore() > ConfigurationController.getMinVotes()) {
+			if (!p.getNotified() && p.getScore() > factoria.getServicesFactory().getConfigurationService().actualConfiguration().getMinVotesToAcceptProposal()) {
 				notificaciones.add("Proposal: " + p.getTitle() + " enters the acceptance phase");
 				p.setNotified(true);
 			}
