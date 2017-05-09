@@ -16,8 +16,8 @@ public class VoteProposal extends Vote {
 	public VoteProposal() {
 	}
 
-	public VoteProposal(Citizen citizen, Proposal prop) {
-		super(citizen);
+	public VoteProposal(Citizen citizen, Proposal prop, int value) {
+		super(citizen, value);
 		this.proposal = prop;
 		setProposal(prop);
 	}

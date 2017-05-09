@@ -1,6 +1,7 @@
 package es.uniovi.asw;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
@@ -25,11 +26,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import com.sun.faces.config.ConfigureListener;
 
 import es.uniovi.asw.infraestructure.Factories;
+import es.uniovi.asw.kafka.KafkaSender;
 import es.uniovi.asw.persistence.model.Administrator;
 import es.uniovi.asw.persistence.model.Category;
 import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
+import es.uniovi.asw.persistence.model.Vote;
 import es.uniovi.asw.persistence.model.VoteComment;
 import es.uniovi.asw.persistence.model.VoteProposal;
 
@@ -40,6 +43,8 @@ import es.uniovi.asw.persistence.model.VoteProposal;
 public class Application extends SpringBootServletInitializer implements ServletContextAware, CommandLineRunner {
 	@Autowired
 	private Factories factoria;
+	@Autowired
+	private KafkaSender sender;
 
 	public static void main(String[] args) {
 		SpringApplication app = new SpringApplication(Application.class);
@@ -48,7 +53,15 @@ public class Application extends SpringBootServletInitializer implements Servlet
 
 	@Override
 	public void run(String... arg0) throws Exception {
-//
+//		
+		List<Vote> votes = factoria.getServicesFactory().getVoteService().findAllProposalVotes();
+		
+		for (Vote v : votes) {
+			VoteProposal v1 = (VoteProposal) v;
+			sender.sendDashboard(v1.getCitizen().getFirstName() + "," + v1.getProposal().getTitle() + ", " + "," + v1.getValue());
+		}
+		
+		//todos los usuarios, todos los votos, todas las propuestas
 //		// creates admin
 //		Administrator admin = new Administrator("admin", "admin");
 //

@@ -16,4 +16,7 @@ public interface VoteRepository extends JpaRepository<Vote, Long> {
 
 	@Query("select u from Vote u where u.citizen = :citizen and Type(u) = 'P'")
 	List<Vote> findProposalVotesByCitizen(@Param("citizen") Citizen citizen);
+	
+	@Query("select u from Vote u where Type(u) = 'P'")
+	List<Vote> findAllProposalVotes();
 }

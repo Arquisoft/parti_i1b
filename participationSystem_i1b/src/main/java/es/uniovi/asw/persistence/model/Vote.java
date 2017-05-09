@@ -17,14 +17,16 @@ public abstract class Vote {
 	@Id
 	@GeneratedValue
 	private Long id;
+	private int value;
 	@ManyToOne
 	private Citizen citizen;
 
 	public Vote() {
 	}
 
-	public Vote(Citizen citizen) {
+	public Vote(Citizen citizen,int value) {
 		this.citizen = citizen;
+		this.value = value;
 	}
 
 	public Long getId() {
@@ -39,6 +41,14 @@ public abstract class Vote {
 
 	public Citizen getCitizen() {
 		return citizen;
+	}
+
+	public int getValue() {
+		return value;
+	}
+
+	public void setValue(int value) {
+		this.value = value;
 	}
 
 	@Override

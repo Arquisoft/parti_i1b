@@ -11,4 +11,6 @@ public interface VoteService {
 	List<Vote> findCommentVotesByCitizen(Citizen citizen);
 
 	List<Vote> findProposalVotesByCitizen(Citizen citizen);
+	
+	List<Vote> findAllProposalVotes();
 }

@@ -33,4 +33,11 @@ public class VoteServiceImpl implements VoteService {
 		return factories.getPersistenceFactory().getVoteRepository().findProposalVotesByCitizen(citizen);
 	}
 
+	@Override
+	public List<Vote> findAllProposalVotes() {
+		return factories.getPersistenceFactory().getVoteRepository().findAllProposalVotes();
+	}
+	
+	
+
 }

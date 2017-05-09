@@ -17,8 +17,8 @@ public class VoteComment extends Vote {
 
 	}
 
-	public VoteComment(Citizen citizen, Comment comment) {
-		super(citizen);
+	public VoteComment(Citizen citizen, Comment comment, int value) {
+		super(citizen, value);
 		this.comment = comment;
 		Association.Voting.linkComment(super.getCitizen(), this, comment);
 	}

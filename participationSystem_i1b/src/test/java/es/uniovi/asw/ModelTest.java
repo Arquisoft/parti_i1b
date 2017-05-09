@@ -110,8 +110,8 @@ public class ModelTest {
 
 		VoteService service = servicesFactory.getVoteService();
 
-		Vote vote1 = new VoteComment(oscar, coment1);
-		Vote vote2 = new VoteProposal(pedro, proposal2);
+		Vote vote1 = new VoteComment(oscar, coment1,+1);
+		Vote vote2 = new VoteProposal(pedro, proposal2,+1);
 
 		service.save(vote1);
 		service.save(vote2);

@@ -148,7 +148,7 @@ public class ProposaListController {
 		// }
 		// }
 		// selectedProposal.setVotes(votesProposal);
-		Vote vote = new VoteProposal(citizen, selectedProposal);
+		Vote vote = new VoteProposal(citizen, selectedProposal, votoValue);
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);
 		if (votes.contains(vote)) {
 			errorAlreadyVoteProposal();
@@ -181,7 +181,7 @@ public class ProposaListController {
 	}
 
 	public void voteComment(Comment comment) {
-		Vote vote = new VoteComment(citizen, comment);
+		Vote vote = new VoteComment(citizen, comment, +1);
 		boolean found = false;
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findCommentVotesByCitizen(citizen);
 		for (Vote v : votes) {
