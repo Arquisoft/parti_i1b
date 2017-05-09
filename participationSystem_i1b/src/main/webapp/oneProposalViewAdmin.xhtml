@@ -36,10 +36,10 @@
 									closable="true" />
 				<p:panel style="float: left; text-align:left; margin-left:320px;  ">
 				<p:commandButton value="Sort by score"
-							action="#{ProposalListController.showComments(score)}" update="comments"
+							action="#{ProposalListController.showComments('score')}" update="comments"
 							immediate="true" />
 				<p:commandButton value="Sort by date"
-							action="#{ProposalListController.showComments(date)}" update="comments"
+							action="#{ProposalListController.showComments('date')}" update="comments"
 							immediate="true" />
 				<p:separator />
 					<p:accordionPanel id="comments"

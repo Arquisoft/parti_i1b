@@ -54,15 +54,9 @@ public class Application extends SpringBootServletInitializer implements Servlet
 	@Override
 	public void run(String... arg0) throws Exception {
 //		
-		List<Vote> votes = factoria.getServicesFactory().getVoteService().findAllProposalVotes();
-		
-		for (Vote v : votes) {
-			VoteProposal v1 = (VoteProposal) v;
-			sender.sendDashboard(v1.getCitizen().getFirstName() + "," + v1.getProposal().getTitle() + ", " + "," + v1.getValue());
-		}
 		
 		//todos los usuarios, todos los votos, todas las propuestas
-//		// creates admin
+		// creates admin
 //		Administrator admin = new Administrator("admin", "admin");
 //
 //		// creates citizens
@@ -139,31 +133,23 @@ public class Application extends SpringBootServletInitializer implements Servlet
 //			factoria.getServicesFactory().getCommentService().save(comment1);
 //		if (factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).isEmpty())
 //			factoria.getServicesFactory().getCommentService().save(comment2);
-//
-//		// save
-//
+
+		// save
+
 //		VoteComment vote = new VoteComment(
 //				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()),
-//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).get(0));
+//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).get(0),+1);
 //		VoteComment vote1 = new VoteComment(
 //				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()),
-//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0));
+//				factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal1).get(0),+1);
 //		VoteProposal vote2 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal1);
+//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal1,+1);
 //		VoteProposal vote3 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal2);
+//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(muhlah.getEmail()), proposal2,-1);
 //		VoteProposal vote4 = new VoteProposal(
-//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()), proposal1);
+//				factoria.getPersistenceFactory().getCitizenRepository().findByEmail(diego.getEmail()), proposal1, +1);
 //
-//		// save votes
-//		if (factoria.getServicesFactory().getVoteService()
-//				.findCommentVotesByCitizen(
-//						factoria.getServicesFactory().getCitizenService().findByEmail(muhlah.getEmail()))
-//				.isEmpty()
-//				&& factoria.getServicesFactory().getVoteService()
-//						.findProposalVotesByCitizen(
-//								factoria.getServicesFactory().getCitizenService().findByEmail(muhlah.getEmail()))
-//						.isEmpty()) {
+//		// save votes		
 //			factoria.getServicesFactory().getVoteService().save(vote1);
 //			int score1 = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0)
 //					.getScore() + 1;
@@ -179,15 +165,8 @@ public class Application extends SpringBootServletInitializer implements Servlet
 //			score = proposal1.getScore() + 1;
 //			proposal1.setScore(score);
 //			factoria.getServicesFactory().getProposalService().save(proposal1);
-//		}
-//		if (factoria.getServicesFactory().getVoteService()
-//				.findCommentVotesByCitizen(
-//						factoria.getServicesFactory().getCitizenService().findByEmail(diego.getEmail()))
-//				.isEmpty()
-//				&& factoria.getServicesFactory().getVoteService()
-//						.findProposalVotesByCitizen(
-//								factoria.getServicesFactory().getCitizenService().findByEmail(diego.getEmail()))
-//						.isEmpty()) {
+//	
+//		
 //			factoria.getServicesFactory().getVoteService().save(vote);
 //			int score1 = factoria.getPersistenceFactory().getCommentRepository().findByProposal(proposal2).get(0)
 //					.getScore() + 1;
@@ -200,8 +179,13 @@ public class Application extends SpringBootServletInitializer implements Servlet
 //			proposal1.setScore(score);
 //			factoria.getServicesFactory().getProposalService().save(proposal1);
 //		}
-//
-//		System.out.println("en este metodo creamos los usuarios y la base de datos si no esta creada");
+		List<Vote> votes = factoria.getServicesFactory().getVoteService().findAllProposalVotes();
+		
+		for (Vote v : votes) {
+			VoteProposal v1 = (VoteProposal) v;
+			sender.sendDashboard(v1.getCitizen().getFirstName() + "," + v1.getProposal().getTitle() + ", " + "," + v1.getValue());
+		}
+		System.out.println("en este metodo creamos los usuarios y la base de datos si no esta creada");
 	}
 
 	@Bean

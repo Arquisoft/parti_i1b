@@ -123,14 +123,22 @@ public class ProposaListController {
 	}
 
 	public List<Comment> showComments(String sorting) {
-
+		System.out.println("SHOW COMMENTS:");
 		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
+		System.out.println("Unordered comments:");
+		for(int i = 0; i<comments.size();i++){
+			System.out.println(comments.get(i));
+		}
 		if ("score".equals(sorting)) {
 			Collections.sort(comments, Comparator.comparing(Comment::getScore));
+			System.out.println("\nOrdered comments:");
+			for(int i = 0; i<comments.size();i++){
+				System.out.println(comments.get(i));
+			}
 		} else if ("date".equals(sorting)) {
 			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
 		}
-
+		
 		return comments;
 	}
 
