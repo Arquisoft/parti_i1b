@@ -195,14 +195,9 @@
 			<version>3.15</version>
 		</dependency>
 		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-			<version>2.11.7</version>
-		</dependency>
-		<dependency>
 			<groupId>io.gatling.highcharts</groupId>
 			<artifactId>gatling-charts-highcharts</artifactId>
-			<version>2.1.7</version>
+			<version>2.2.5</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -261,17 +256,18 @@
 				</executions>
 			</plugin>
 			<plugin>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.2.2</version>
+			</plugin>
+			<plugin>
 				<groupId>io.gatling</groupId>
 				<artifactId>gatling-maven-plugin</artifactId>
-				<version>2.1.7</version>
+				<version>2.2.4</version>
 				<configuration>
-					<configFolder>src/test/resources</configFolder>
-					<dataFolder>src/test/resources/data</dataFolder>
-					<resultsFolder>target/gatling/results</resultsFolder>
-					<bodiesFolder>src/test/resources/bodies</bodiesFolder>
-					<simulationsFolder>src/test/scala</simulationsFolder>
 					<runMultipleSimulations>true</runMultipleSimulations>
 				</configuration>
+
 				<executions>
 					<execution>
 						<goals>
