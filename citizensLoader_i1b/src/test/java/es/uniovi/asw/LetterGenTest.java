@@ -42,7 +42,7 @@ public class LetterGenTest {
 			PDFTextStripper pdfStripper = new PDFTextStripper();
 			
 			String pdfText = pdfStripper.getText(document);
-			assertEquals(pdfText,"email@test.com\r\ntest\r\n");
+			assertEquals(pdfText,"email@test.com\ntest\n");
 		} catch (IOException e) {
 		}
 	}

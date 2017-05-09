@@ -11,8 +11,12 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+
+# CitizensLoader files
 *.pdf
 *.log
+*.docx
+*.txt
 
 # Eclipse Core
 .project

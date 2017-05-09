@@ -29,7 +29,7 @@ public class TestExecution {
 	{
 		citizensInfo = new ArrayList<CitizenInfo>();
 		inserter = new InsertR();
-		LoadUsers.main("-f src/main/resources/ejemplo.xlsx", "-f src/main/resources/ejemplo.xlsx");
+		LoadUsers.main("-f src/main/resources/ejemplo.xlsx", "-f src/main/resources/ejemplo2.xlsx");
 	}
 	
 	private Date createDate(String dateStr)
@@ -63,7 +63,7 @@ public class TestExecution {
 		
 		List<Citizen> insertedCitizens = inserter.insert(citizensInfo);
 		
-		assertEquals(2, insertedCitizens.size());
+		assertEquals(0, insertedCitizens.size());
 		assertEquals(nacho, Parser.citizenRepository.findByNif("71729768J"));
 		assertEquals(gabriel, Parser.citizenRepository.findByNif("55433455B"));
 		
