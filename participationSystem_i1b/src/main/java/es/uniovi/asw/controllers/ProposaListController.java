@@ -1,7 +1,6 @@
 package es.uniovi.asw.controllers;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +8,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -123,7 +123,6 @@ public class ProposaListController {
 	}
 	
 	public List<Comment> showOrderedByScore() {
-		//comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
 		List<Comment> aux = new ArrayList<Comment>(comments);
 		aux.sort(new Comparator<Comment>() {
 	        @Override
@@ -137,33 +136,19 @@ public class ProposaListController {
 	}
 	
 	public List<Comment> showOrderedByDate() {
-		//comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
-		comments.sort(new Comparator<Comment>() {
+		List<Comment> aux = new ArrayList<Comment>(comments);
+		aux.sort(new Comparator<Comment>() {
 	        @Override
 			public int compare(Comment o1, Comment o2) {
 				return o1.getCreationDate().compareTo(o2.getCreationDate());
 			}
 		});
+		comments = new ArrayList<Comment>();
+		comments.addAll(aux);
 		return comments;
 	}
 
 	public List<Comment> showComments() {
-//		System.out.println("SHOW COMMENTS:");
-//		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
-//		System.out.println("Unordered comments:");
-//		for(int i = 0; i<comments.size();i++){
-//			System.out.println(comments.get(i));
-//		}
-//		if ("score".equals(sorting)) {
-//			Collections.sort(comments, Comparator.comparing(Comment::getScore));
-//			System.out.println("\nOrdered comments:");
-//			for(int i = 0; i<comments.size();i++){
-//				System.out.println(comments.get(i));
-//			}
-//		} else if ("date".equals(sorting)) {
-//			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
-//		}
-//		
 		return this.comments;
 	}
 
