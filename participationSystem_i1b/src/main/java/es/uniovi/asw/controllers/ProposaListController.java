@@ -134,6 +134,76 @@ public class ProposaListController {
 		return comments;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((citizen == null) ? 0 : citizen.hashCode());
+		result = prime * result + ((comments == null) ? 0 : comments.hashCode());
+		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result + ((notificaciones == null) ? 0 : notificaciones.hashCode());
+		result = prime * result + score;
+		result = prime * result + ((selectedProposal == null) ? 0 : selectedProposal.hashCode());
+		result = prime * result + ((sender == null) ? 0 : sender.hashCode());
+		result = prime * result + ((textComment == null) ? 0 : textComment.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ProposaListController other = (ProposaListController) obj;
+		if (citizen == null) {
+			if (other.citizen != null)
+				return false;
+		} else if (!citizen.equals(other.citizen))
+			return false;
+		if (comments == null) {
+			if (other.comments != null)
+				return false;
+		} else if (!comments.equals(other.comments))
+			return false;
+		if (description == null) {
+			if (other.description != null)
+				return false;
+		} else if (!description.equals(other.description))
+			return false;
+		if (notificaciones == null) {
+			if (other.notificaciones != null)
+				return false;
+		} else if (!notificaciones.equals(other.notificaciones))
+			return false;
+		if (score != other.score)
+			return false;
+		if (selectedProposal == null) {
+			if (other.selectedProposal != null)
+				return false;
+		} else if (!selectedProposal.equals(other.selectedProposal))
+			return false;
+		if (sender == null) {
+			if (other.sender != null)
+				return false;
+		} else if (!sender.equals(other.sender))
+			return false;
+		if (textComment == null) {
+			if (other.textComment != null)
+				return false;
+		} else if (!textComment.equals(other.textComment))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
 	public void voteProposal(int votoValue) {
 		// System.out.println("votando");
 		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
