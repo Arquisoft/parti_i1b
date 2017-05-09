@@ -33,8 +33,6 @@ public class ProposaListController {
 	@Autowired
 	private KafkaSender sender;
 
-	
-
 	private Citizen citizen;
 	private static List<Proposal> list;
 	private Proposal selectedProposal;
@@ -43,24 +41,24 @@ public class ProposaListController {
 	private String textComment;
 	private ArrayList<String> notificaciones = new ArrayList<String>();
 
-
 	@PostConstruct
 	public void init() {
-		list= factoria.getServicesFactory().getProposalService().findAll();
-		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+		list = factoria.getServicesFactory().getProposalService().findAll();
+		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 	}
-	
-    public void showNotifications() {
-        FacesContext context = FacesContext.getCurrentInstance();
-                 
-        for (String s : getNotificaciones()) {
-            context.addMessage(null, new FacesMessage("Notification",  s));
-        }
-    }
+
+	public void showNotifications() {
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		for (String s : getNotificaciones()) {
+			context.addMessage(null, new FacesMessage("Notification", s));
+		}
+	}
 
 	public String getTitle() {
 		return title;
 	}
+
 	public String getDescription() {
 		return description;
 	}
@@ -89,136 +87,127 @@ public class ProposaListController {
 		this.description = description;
 	}
 
-
-
 	public void setCitizen(Citizen citizen) {
 		this.citizen = citizen;
 	}
 
 	public void setList(List<Proposal> list) {
-		this.list = list;
+		ProposaListController.list = list;
 	}
-	
-	public List<Proposal> showProposals()
-	{
+
+	public List<Proposal> showProposals() {
 		list = factoria.getServicesFactory().getProposalService().findAll();
 		return list;
 	}
-	
-	public String selectProposal(Proposal pr)
-	{
-		selectedProposal=pr;
-		title=selectedProposal.getTitle();
-		description=selectedProposal.getDescription();
-		score=selectedProposal.getScore();
-		
+
+	public String selectProposal(Proposal pr) {
+		selectedProposal = pr;
+		title = selectedProposal.getTitle();
+		description = selectedProposal.getDescription();
+		score = selectedProposal.getScore();
+
 		return "goToView";
 	}
-	
-	public void removeProposal(Proposal pr){
+
+	public void removeProposal(Proposal pr) {
 		factoria.getServicesFactory().getProposalService().delete(pr);
 	}
-	
-	public String goToAddView(){
+
+	public String goToAddView() {
 		return "addView";
 	}
-	
-	public String goToListView(){
+
+	public String goToListView() {
 		System.out.println("back");
 		return "listView";
 	}
-	
-	public List<Comment> showComments(String sorting)
-	{
-	    
+
+	public List<Comment> showComments(String sorting) {
+
 		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
 
-		if (sorting.equals("score")) {
+		if ("score".equals(sorting)) {
 			Collections.sort(comments, Comparator.comparing(Comment::getScore));
-		}
-		else if (sorting.equals("date")) {
+		} else if ("date".equals(sorting)) {
 			Collections.sort(comments, Comparator.comparing(Comment::getCreationDate));
 		}
-		
+
 		return comments;
 	}
 
-	public void voteProposal(int votoValue){
-		//System.out.println("votando");
-		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
-//		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);		
-//		List<VoteProposal> votesProposal = new ArrayList<VoteProposal>();
-//		for(Vote vote:votes)
-//		{
-//			if(((VoteProposal)vote).getProposal().equals(selectedProposal))
-//			{
-//				votesProposal.add((VoteProposal)vote);
-//			}
-//		}
-//		selectedProposal.setVotes(votesProposal);
-		Vote vote= new VoteProposal(citizen,selectedProposal);
+	public void voteProposal(int votoValue) {
+		// System.out.println("votando");
+		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+		// List<Vote> votes =
+		// factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);
+		// List<VoteProposal> votesProposal = new ArrayList<VoteProposal>();
+		// for(Vote vote:votes)
+		// {
+		// if(((VoteProposal)vote).getProposal().equals(selectedProposal))
+		// {
+		// votesProposal.add((VoteProposal)vote);
+		// }
+		// }
+		// selectedProposal.setVotes(votesProposal);
+		Vote vote = new VoteProposal(citizen, selectedProposal);
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findProposalVotesByCitizen(citizen);
-		if(votes.contains(vote)){
+		if (votes.contains(vote)) {
 			errorAlreadyVoteProposal();
-		}
-		else{
+		} else {
 			factoria.getServicesFactory().getVoteService().save(vote);
-			score = selectedProposal.getScore()+votoValue;
+			score = selectedProposal.getScore() + votoValue;
 			selectedProposal.setScore(score);
 			factoria.getServicesFactory().getProposalService().save(selectedProposal);
-			if(comments.isEmpty())
-			{
-				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+", "+","+votoValue);
+			if (comments.isEmpty()) {
+				sender.sendDashboard(
+						citizen.getFirstName() + "," + selectedProposal.getTitle() + ", " + "," + votoValue);
+			} else {
+				sender.sendDashboard(citizen.getFirstName() + "," + selectedProposal.getTitle() + "," + comments.get(0)
+						+ "," + votoValue);
+
 			}
-			else
-			{
-				sender.sendDashboard(citizen.getFirstName()+","+selectedProposal.getTitle()+","+comments.get(0)+","+votoValue);
-		
-			}
-			//System.out.println(votoValue+"raaaaaaaaaaaaa"+selectedProposal.getScore());
-			sender.sendToLog("New vote for proposal: "+selectedProposal.getTitle());
-			}
-	}
-	
-	private void errorAlreadyVoteProposal() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this proposal!"));
-	}
-	
-	private void errorAlreadyVoteComment() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this comment!"));		
+			// System.out.println(votoValue+"raaaaaaaaaaaaa"+selectedProposal.getScore());
+			sender.sendToLog("New vote for proposal: " + selectedProposal.getTitle());
+		}
 	}
 
-	public void voteComment(Comment comment){
-		Vote vote= new VoteComment(citizen,comment);
+	private void errorAlreadyVoteProposal() {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this proposal!"));
+	}
+
+	private void errorAlreadyVoteComment() {
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You already vote this comment!"));
+	}
+
+	public void voteComment(Comment comment) {
+		Vote vote = new VoteComment(citizen, comment);
 		boolean found = false;
 		List<Vote> votes = factoria.getServicesFactory().getVoteService().findCommentVotesByCitizen(citizen);
-		for(Vote v: votes)
-		{
-			VoteComment v1 = (VoteComment) v ;
-			VoteComment v2= (VoteComment) vote;
-			if(v1.getComment().getId()==v2.getComment().getId())
-			{
-				found=true;
+		for (Vote v : votes) {
+			VoteComment v1 = (VoteComment) v;
+			VoteComment v2 = (VoteComment) vote;
+			if (v1.getComment().getId() == v2.getComment().getId()) {
+				found = true;
 			}
 		}
-		if(found){
+		if (found) {
 			errorAlreadyVoteComment();
-		}
-		else{
+		} else {
 			factoria.getServicesFactory().getVoteService().save(vote);
-			comment.setScore(comment.getScore()+1);
+			comment.setScore(comment.getScore() + 1);
 			factoria.getServicesFactory().getCommentService().save(comment);
-			sender.sendToLog("New vote for a comment created in "+selectedProposal.getTitle());
+			sender.sendToLog("New vote for a comment created in " + selectedProposal.getTitle());
 		}
 	}
 
-
-	public void addComment(){
-		Comment coment= new Comment(textComment, selectedProposal, citizen, new Date(), 0);
+	public void addComment() {
+		Comment coment = new Comment(textComment, selectedProposal, citizen, new Date(), 0);
 		textComment = "";
 		factoria.getServicesFactory().getCommentService().save(coment);
 		sender.sendComment(coment);
-		sender.sendToLog("New comment created in "+selectedProposal.getTitle());
+		sender.sendToLog("New comment created in " + selectedProposal.getTitle());
 	}
 
 	public List<Comment> getComments() {
@@ -237,24 +226,22 @@ public class ProposaListController {
 		this.score = score;
 	}
 
-
 	public String getTextComment() {
 		return textComment;
 	}
-
 
 	public void setTextComment(String textComment) {
 		this.textComment = textComment;
 	}
 
 	public ArrayList<String> getNotificaciones() {
-			notificaciones.clear();
-			for (Proposal p : list) {
-				if (!p.getNotified()&&p.getScore()>ConfigurationController.getMinVotes()) {
-					notificaciones.add("Proposal: "+p.getTitle()+" enters the acceptance phase");
-					p.setNotified(true);
-				}
+		notificaciones.clear();
+		for (Proposal p : list) {
+			if (!p.getNotified() && p.getScore() > ConfigurationController.getMinVotes()) {
+				notificaciones.add("Proposal: " + p.getTitle() + " enters the acceptance phase");
+				p.setNotified(true);
 			}
-			return notificaciones;
+		}
+		return notificaciones;
 	}
 }

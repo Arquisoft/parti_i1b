@@ -41,7 +41,5 @@ public class Vote {
 	public void _setCitizen(Citizen citizen) {
 		this.citizen = citizen;
 	}
-	
-	
 
 }

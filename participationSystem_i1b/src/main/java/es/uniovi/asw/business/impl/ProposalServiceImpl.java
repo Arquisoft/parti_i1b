@@ -11,12 +11,11 @@ import es.uniovi.asw.persistence.model.Comment;
 import es.uniovi.asw.persistence.model.Proposal;
 
 @Service
-public class ProposalServiceImpl implements ProposalService{
-	
-	
+public class ProposalServiceImpl implements ProposalService {
+
 	@Autowired
 	private Factories factories;
-	
+
 	@Override
 	public void save(Proposal proposal) {
 		factories.getPersistenceFactory().getProposalRepository().save(proposal);
@@ -31,10 +30,9 @@ public class ProposalServiceImpl implements ProposalService{
 	public List<Proposal> findAll() {
 		return factories.getPersistenceFactory().getProposalRepository().findAll();
 	}
-	
+
 	@Override
-	public boolean alreadyExists(Proposal proposal)
-	{
+	public boolean alreadyExists(Proposal proposal) {
 		Proposal prop = factories.getPersistenceFactory().getProposalRepository().findByTitle(proposal.getTitle());
 		return prop != null;
 	}
@@ -44,12 +42,10 @@ public class ProposalServiceImpl implements ProposalService{
 		return factories.getPersistenceFactory().getCommentRepository().findByProposal(selectedProposal);
 
 	}
-	
+
 	@Override
-	public Proposal findByTitle(String title){
+	public Proposal findByTitle(String title) {
 		return factories.getPersistenceFactory().getProposalRepository().findByTitle(title);
 	}
-
-
 
 }

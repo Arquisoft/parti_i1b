@@ -1,8 +1,6 @@
 package es.uniovi.asw;
 
-
-import static org.junit.Assert.*;
-
+import static org.junit.Assert.assertEquals;
 
 import java.util.Date;
 
@@ -14,23 +12,22 @@ import es.uniovi.asw.password.PasswordGenerator;
 
 public class PasswordTest {
 
-	
-
 	private Citizen citizen;
+
 	@Before
-	public void setUp() throws Exception
-	{
-		
-		citizen = new Citizen("Gabriel","García",new Date(), "email@test.com","55433455B", "cc","cc", 1);
+	public void setUp() throws Exception {
+
+		citizen = new Citizen("Gabriel", "García", new Date(), "email@test.com", "55433455B", "cc", "cc", 1);
 		citizen.setUnhashedPassword("test");
-		
+
 	}
+
 	@Test
 	public void testGeneratedPassword() {
-		
+
 		PasswordGenerator.generatePasswords(citizen);
-		assertEquals(citizen.getUnhashedPassword().length(),10);
-		
+		assertEquals(citizen.getUnhashedPassword().length(), 10);
+
 	}
 
 }

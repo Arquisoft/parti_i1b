@@ -16,12 +16,12 @@ class IndexSimulation extends Simulation {
 		.acceptLanguageHeader("es-ES,es;q=0.8,en-US;q=0.5,en;q=0.3")
 		.userAgentHeader("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:52.0) Gecko/20100101 Firefox/52.0")
 
-	val headers_0 = Map("Upgrade-Insecure-Requests" -> "1")
+	val headers0 = Map("Upgrade-Insecure-Requests" -> "1")
 
 	val scn = scenario("IndexSimulation")
-		.exec(http("request_0")
+		.exec(http("request0")
 			.get("/")
-			.headers(headers_0))
+			.headers(headers0))
 
 	setUp(scn.inject(atOnceUsers(100))).protocols(httpProtocol)
 }

@@ -8,22 +8,21 @@ import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Comment;
 
 @Service
-public class CommentServiceImpl implements CommentService{
-	
+public class CommentServiceImpl implements CommentService {
+
 	@Autowired
 	private Factories factories;
-	
 
 	@Override
 	public void save(Comment comment) {
 		factories.getPersistenceFactory().getCommentRepository().save(comment);
-		
+
 	}
 
 	@Override
 	public void delete(Comment comment) {
 		factories.getPersistenceFactory().getCommentRepository().delete(comment);
-		
+
 	}
 
 }

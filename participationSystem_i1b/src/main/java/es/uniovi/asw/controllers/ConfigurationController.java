@@ -28,7 +28,7 @@ public class ConfigurationController {
 	private List<Category> actualCategories;
 	private List<ForbiddenWords> words;
 
-	//event attributes
+	// event attributes
 	private boolean skip;
 	private ForbiddenWords selectedWord;
 	private Category selectedCategory;
@@ -43,90 +43,84 @@ public class ConfigurationController {
 		conf = factoria.getServicesFactory().getConfigurationService().actualConfiguration();
 		oldCategories = factoria.getServicesFactory().getCategoryService().findAll();
 		actualCategories = new ArrayList<>(oldCategories);
-		if(conf != null)
-		{
+		if (conf != null) {
 			words = new ArrayList<ForbiddenWords>(conf.getForbiddenWords());
 			lifetime = conf.getDeadline();
 			minVotes = conf.getMinVotesToAcceptProposal();
-			
-		}
-		else{
+
+		} else {
 			words = new ArrayList<ForbiddenWords>();
 			lifetime = 0;
 			minVotes = 0;
-		}		
+		}
 	}
 
 	public void addForbiddenWord() {
 		ForbiddenWords fb = new ForbiddenWords(addWordInput, conf);
-		if(!words.contains(fb)){
-			//System.out.println("Doesnt contain:"+fb.getWord());
+		if (!words.contains(fb)) {
+			// System.out.println("Doesnt contain:"+fb.getWord());
 			conf.addWord(fb);
 			words.add(fb);
-			//System.out.println("adding word");
-		}
-		else{
+			// System.out.println("adding word");
+		} else {
 			warningForbiddenWord();
 		}
 		addWordInput = "";
 	}
 
 	public void removeForbiddenWord() {
-		if(selectedWord!=null)
-		{
+		if (selectedWord != null) {
 			conf.removeWord(selectedWord);
 			words.remove(selectedWord);
 		}
 
 	}
 
-	public void addProvisionalCategory(){
+	public void addProvisionalCategory() {
 		Category c = new Category(addCategoryInput);
-		if(!actualCategories.contains(c)){
+		if (!actualCategories.contains(c)) {
 			actualCategories.add(c);
-			System.out.println("Cat:"+c.getName());
-		}
-		else
-		{
+			System.out.println("Cat:" + c.getName());
+		} else {
 			warningCategory();
 		}
 		addCategoryInput = "";
 	}
 
-	public void removeProvisionalCategory(){
-		if(selectedCategory!=null)
-		{
+	public void removeProvisionalCategory() {
+		if (selectedCategory != null) {
 			actualCategories.remove(selectedCategory);
 			factoria.getServicesFactory().getCategoryService().delete(selectedCategory);
 		}
 	}
 
 	public String onFlowProcess(FlowEvent event) {
-		if(skip) {
-			skip = false;   //reset in case user goes back
+		if (skip) {
+			skip = false; // reset in case user goes back
 			return "confirm";
-		}
-		else {
+		} else {
 			return event.getNewStep();
 		}
 	}
 
 	public void warningForbiddenWord() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This word is already forbidden!"));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This word is already forbidden!"));
 	}
-	
+
 	private void warningCategory() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This category already exists!"));
-				
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_WARN, "Warning!", "This category already exists!"));
+
 	}
 
 	public String saveConfig() {
-		for(Category c : actualCategories){
-			if(!oldCategories.contains(c)) {
+		for (Category c : actualCategories) {
+			if (!oldCategories.contains(c)) {
 				factoria.getServicesFactory().getCategoryService().save(c);
 			}
 		}
-		for(ForbiddenWords word : words) {
+		for (ForbiddenWords word : words) {
 			word.setConf(conf);
 		}
 		conf.setDeadline(lifetime);
@@ -148,7 +142,7 @@ public class ConfigurationController {
 	}
 
 	public void setConf(Configuration conf) {
-		this.conf = conf;
+		ConfigurationController.conf = conf;
 	}
 
 	public List<Category> getOldCategories() {
@@ -220,12 +214,7 @@ public class ConfigurationController {
 	}
 
 	public void setMinVotes(int minVotes) {
-		this.minVotes = minVotes;
+		ConfigurationController.minVotes = minVotes;
 	}
-	
-	
-	
-	
-
 
 }

@@ -16,7 +16,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table (name="Citizen")
+@Table(name = "Citizen")
 public class Citizen {
 	@Id
 	@GeneratedValue
@@ -34,25 +34,27 @@ public class Citizen {
 	private String password;
 	@Transient
 	private String unhashedPassword;
-	@OneToMany(mappedBy="citizen")
-	private List<Proposal> proposals= new ArrayList<Proposal>();
-	@OneToMany(mappedBy="citizen")
+	@OneToMany(mappedBy = "citizen")
+	private List<Proposal> proposals = new ArrayList<Proposal>();
+	@OneToMany(mappedBy = "citizen")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Vote> votes= new ArrayList<Vote>();
-	@OneToMany(mappedBy="citizen")
-	private List<Comment> comments= new ArrayList<Comment>();
+	private List<Vote> votes = new ArrayList<Vote>();
+	@OneToMany(mappedBy = "citizen")
+	private List<Comment> comments = new ArrayList<Comment>();
 
-	protected Citizen() {}
+	protected Citizen() {
+	}
 
-	public Citizen(String firstName,String lastName,Date birthday, String email,String nif, String address,String nationality, int pollingStationCode) {
+	public Citizen(String firstName, String lastName, Date birthday, String email, String nif, String address,
+			String nationality, int pollingStationCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthday=birthday;
+		this.birthday = birthday;
 		this.email = email;
 		this.nif = nif;
-		this.address=address;
-		this.nationality=nationality;
-		this.pollingStationCode=pollingStationCode;
+		this.address = address;
+		this.nationality = nationality;
+		this.pollingStationCode = pollingStationCode;
 	}
 
 	public String getPassword() {
@@ -62,22 +64,6 @@ public class Citizen {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	//	public void setBirthday(Date birthday) {
-	//		this.birthday = birthday;
-	//	}
-	//
-	//	public void setEmail(String email) {
-	//		this.email = email;
-	//	}
-	//
-	//	public void setAddress(String address) {
-	//		this.address = address;
-	//	}
-	//
-	//	public void setNationality(String nationality) {
-	//		this.nationality = nationality;
-	//	}
 
 	public Long getId() {
 		return id;
@@ -122,9 +108,6 @@ public class Citizen {
 	public void setUnhashedPassword(String unhashedPassword) {
 		this.unhashedPassword = unhashedPassword;
 	}
-
-
-
 
 	@Override
 	public int hashCode() {
@@ -180,19 +163,15 @@ public class Citizen {
 				return false;
 		} else if (!nif.equals(other.nif))
 			return false;
-		if (pollingStationCode != other.pollingStationCode)
-			return false;
-		return true;
+		return !(pollingStationCode != other.pollingStationCode);
 	}
 
 	@Override
 	public String toString() {
-		return firstName+" "+lastName;
+		return firstName + " " + lastName;
 	}
 
-
-
-	List<Comment> _getComments() {
+	public List<Comment> _getComments() {
 		return comments;
 	}
 
@@ -200,7 +179,7 @@ public class Citizen {
 		return new ArrayList<Comment>(comments);
 	}
 
-	List<Vote> _getVotes() {
+	public List<Vote> _getVotes() {
 		return votes;
 	}
 
@@ -208,9 +187,10 @@ public class Citizen {
 		return new ArrayList<Vote>(votes);
 	}
 
-	List<Proposal> _getProposals() {
+	public List<Proposal> _getProposals() {
 		return proposals;
 	}
+
 	public List<Proposal> getProposals() {
 		return new ArrayList<Proposal>(proposals);
 	}

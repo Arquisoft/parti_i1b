@@ -13,18 +13,19 @@ import javax.persistence.OneToMany;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Commentable {
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	private Long id;
-	
-	@OneToMany(mappedBy="commentable")
+
+	@OneToMany(mappedBy = "commentable")
 	private Set<Comment> comments = new HashSet<>();
-	
-	public Long getId(){
+
+	public Long getId() {
 		return id;
 	}
-	
-	Set<Comment> _getComments(){
+
+	Set<Comment> _getComments() {
 		return comments;
 	}
 
@@ -52,7 +53,5 @@ public abstract class Commentable {
 			return false;
 		return true;
 	}
-	
-	
 
 }

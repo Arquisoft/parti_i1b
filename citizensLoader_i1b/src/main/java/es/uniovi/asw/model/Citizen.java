@@ -11,14 +11,14 @@ import javax.persistence.Table;
 import org.springframework.data.annotation.Transient;
 
 @Entity
-@Table (name="Citizen")
+@Table(name = "Citizen")
 public class Citizen {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@Column(unique = true,nullable = false)
+	@Column(unique = true, nullable = false)
 	private String firstName;
-	@Column(unique = true,nullable = false)
+	@Column(unique = true, nullable = false)
 	private String lastName;
 	@Column(nullable = false)
 	private Date birthday;
@@ -37,17 +37,19 @@ public class Citizen {
 	@Transient
 	private String unhashedPassword;
 
-	protected Citizen() {}
+	protected Citizen() {
+	}
 
-	public Citizen(String firstName,String lastName,Date birthday, String email,String nif, String address,String nationality, int pollingStationCode) {
+	public Citizen(String firstName, String lastName, Date birthday, String email, String nif, String address,
+			String nationality, int pollingStationCode) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.birthday=birthday;
+		this.birthday = birthday;
 		this.email = email;
 		this.nif = nif;
-		this.address=address;
-		this.nationality=nationality;
-		this.pollingStationCode=pollingStationCode;
+		this.address = address;
+		this.nationality = nationality;
+		this.pollingStationCode = pollingStationCode;
 	}
 
 	public String getPassword() {
@@ -58,21 +60,21 @@ public class Citizen {
 		this.password = password;
 	}
 
-//	public void setBirthday(Date birthday) {
-//		this.birthday = birthday;
-//	}
-//
-//	public void setEmail(String email) {
-//		this.email = email;
-//	}
-//
-//	public void setAddress(String address) {
-//		this.address = address;
-//	}
-//
-//	public void setNationality(String nationality) {
-//		this.nationality = nationality;
-//	}
+	// public void setBirthday(Date birthday) {
+	// this.birthday = birthday;
+	// }
+	//
+	// public void setEmail(String email) {
+	// this.email = email;
+	// }
+	//
+	// public void setAddress(String address) {
+	// this.address = address;
+	// }
+	//
+	// public void setNationality(String nationality) {
+	// this.nationality = nationality;
+	// }
 
 	public Long getId() {
 		return id;
@@ -117,9 +119,6 @@ public class Citizen {
 	public void setUnhashedPassword(String unhashedPassword) {
 		this.unhashedPassword = unhashedPassword;
 	}
-
-
-
 
 	@Override
 	public int hashCode() {

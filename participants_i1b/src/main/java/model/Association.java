@@ -1,6 +1,5 @@
 package model;
 
-
 public class Association {
 
 	public static class Commenting {

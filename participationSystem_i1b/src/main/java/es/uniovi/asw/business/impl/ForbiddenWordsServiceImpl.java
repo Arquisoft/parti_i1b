@@ -10,11 +10,11 @@ import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 @Service
-public class ForbiddenWordsServiceImpl implements ForbiddenWordsService{
+public class ForbiddenWordsServiceImpl implements ForbiddenWordsService {
 
 	@Autowired
 	private Factories factories;
-	
+
 	@Override
 	public void save(ForbiddenWords word) {
 		factories.getPersistenceFactory().getForbiddenWordsRepository().save(word);
@@ -23,13 +23,12 @@ public class ForbiddenWordsServiceImpl implements ForbiddenWordsService{
 	@Override
 	public void remove(ForbiddenWords word) {
 		factories.getPersistenceFactory().getForbiddenWordsRepository().delete(word);
-		
+
 	}
 
 	@Override
 	public List<ForbiddenWords> findAll() {
 		return factories.getPersistenceFactory().getForbiddenWordsRepository().findAll();
-
 
 	}
 

@@ -14,18 +14,20 @@ public class PasswordGenerator {
 
 	/**
 	 * Generates a random password with alphanumeric characters.
+	 * 
 	 * @return String
 	 */
 	private static String randomPassword(int sizePassword) {
-	   StringBuilder sb = new StringBuilder(sizePassword);
-	   for(int i = 0; i < sizePassword; i++) {
-		      sb.append(CHARS.charAt(random.nextInt(CHARS.length())));
-	   }
-	   return sb.toString();
+		StringBuilder sb = new StringBuilder(sizePassword);
+		for (int i = 0; i < sizePassword; i++) {
+			sb.append(CHARS.charAt(random.nextInt(CHARS.length())));
+		}
+		return sb.toString();
 	}
-	
+
 	/**
 	 * Sets the password for the citizen object.
+	 * 
 	 * @param citizen
 	 */
 	public static void generatePasswords(Citizen citizen) {

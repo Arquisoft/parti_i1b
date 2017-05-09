@@ -29,7 +29,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>proposalList.xhtml</from-view-id>
 		<navigation-case>
@@ -43,9 +43,9 @@
 			<from-outcome>goToView</from-outcome>
 			<to-view-id>/oneProposalView.xhtml</to-view-id>
 			<redirect />
-		</navigation-case>		
+		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>proposalListAdmin.xhtml</from-view-id>
 		<navigation-case>
@@ -55,7 +55,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>oneProposalView.xhtml</from-view-id>
 		<navigation-case>
@@ -65,7 +65,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>addProposal.xhtml</from-view-id>
 		<navigation-case>
@@ -75,7 +75,7 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+
 	<navigation-rule>
 		<from-view-id>addProposal.xhtml</from-view-id>
 		<navigation-case>

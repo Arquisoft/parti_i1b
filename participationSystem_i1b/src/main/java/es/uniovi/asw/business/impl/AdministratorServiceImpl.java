@@ -8,7 +8,7 @@ import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Administrator;
 
 @Service
-public class AdministratorServiceImpl implements AdministratorService{
+public class AdministratorServiceImpl implements AdministratorService {
 
 	@Autowired
 	private Factories factories;
@@ -17,7 +17,7 @@ public class AdministratorServiceImpl implements AdministratorService{
 	public Administrator checkLogin(String user, String pass) {
 		Administrator a = null;
 		a = factories.getPersistenceFactory().getAdministratorRepository().findByUsername(user);
-		if(a != null && a.getPassword().equals(pass)) {
+		if (a != null && a.getPassword().equals(pass)) {
 			return a;
 		}
 		return null;
@@ -26,12 +26,12 @@ public class AdministratorServiceImpl implements AdministratorService{
 	@Override
 	public void save(Administrator admin) {
 		factories.getPersistenceFactory().getAdministratorRepository().save(admin);
-		
+
 	}
 
 	@Override
 	public void delete(Administrator admin) {
 		factories.getPersistenceFactory().getAdministratorRepository().delete(admin);
-		
+
 	}
 }

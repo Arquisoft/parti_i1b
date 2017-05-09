@@ -33,16 +33,17 @@ public class Citizen {
 	private int pollingStationCode;
 	@Column(nullable = false)
 	private String password;
-	
+
 	@OneToMany(mappedBy = "citizen")
 	private Set<Vote> votes = new HashSet<>();
 	@OneToMany(mappedBy = "citizen")
 	private Set<Proposal> proposals = new HashSet<>();
-	@OneToMany(mappedBy="citizen")
+	@OneToMany(mappedBy = "citizen")
 	private Set<Comment> comments = new HashSet<>();
 
-	public Citizen(){}
-	
+	public Citizen() {
+	}
+
 	public Citizen(String firstName, String lastName, Date birthday, String email, String nif, String address,
 			String nationality, int pollingStationCode) {
 		this.firstName = firstName;
@@ -106,11 +107,11 @@ public class Citizen {
 	public Set<Comment> _getComments() {
 		return comments;
 	}
-	
+
 	public Set<Vote> _getVotes() {
 		return votes;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -142,6 +143,5 @@ public class Citizen {
 				+ email + ", nif=" + nif + ", address=" + address + ", nationality=" + nationality
 				+ ", pollingStationCode=" + pollingStationCode + ", password=" + password + "]";
 	}
-	
 
 }

@@ -12,13 +12,14 @@ import es.uniovi.asw.persistence.model.Citizen;
 @RestController
 @RequestMapping("/rest")
 public class RestLoginController {
-	
+
 	@Autowired
 	private Factories factoria;
-	
-	@RequestMapping(value="/user", method= RequestMethod.POST)	
-	public Citizen findCitizen(@RequestParam(value="login") String login, @RequestParam(value="password") String password){
-		Citizen cit=factoria.getServicesFactory().getCitizenService().checkLogin(login, password);
+
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public Citizen findCitizen(@RequestParam(value = "login") String login,
+			@RequestParam(value = "password") String password) {
+		Citizen cit = factoria.getServicesFactory().getCitizenService().checkLogin(login, password);
 		return cit;
 	}
 

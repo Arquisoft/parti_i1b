@@ -4,8 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.uniovi.asw.persistence.model.Proposal;
 
-public interface ProposalRepository extends JpaRepository<Proposal, Long>{
-	
+public interface ProposalRepository extends JpaRepository<Proposal, Long> {
+
 	Proposal findByTitle(String title);
 
 }

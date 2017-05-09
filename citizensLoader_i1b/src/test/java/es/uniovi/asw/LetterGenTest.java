@@ -1,6 +1,6 @@
 package es.uniovi.asw;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,16 +21,14 @@ import es.uniovi.asw.parser.LetterGenTxt;
 
 public class LetterGenTest {
 	private List<Citizen> citizenList;
-	
+
 	@Before
-    public void setUp() throws Exception {
-		Citizen citizen = new Citizen("Diego","Perez",new Date(),"email@test.com",
-				"11332233A","aa","aa", 1);
+	public void setUp() throws Exception {
+		Citizen citizen = new Citizen("Diego", "Perez", new Date(), "email@test.com", "11332233A", "aa", "aa", 1);
 		citizen.setUnhashedPassword("test");
 		citizenList = new ArrayList<Citizen>();
 		citizenList.add(citizen);
-    }
-
+	}
 
 	@Test
 	public void letterGenPdfTest() {
@@ -38,36 +36,36 @@ public class LetterGenTest {
 		try {
 			letterGen.generateLetters(citizenList);
 			File file = new File("letters/email@test.com.pdf");
-			PDDocument document= PDDocument.load(file);
+			PDDocument document = PDDocument.load(file);
 			PDFTextStripper pdfStripper = new PDFTextStripper();
-			
+
 			String pdfText = pdfStripper.getText(document);
-			assertEquals(pdfText,"email@test.com\ntest\n");
+			assertEquals(pdfText, "email@test.com\ntest\n");
 		} catch (IOException e) {
 		}
 	}
-	
+
 	@Test
 	public void letterGenTxtTest() {
 		LetterGen letterGen = new LetterGenTxt();
 		try {
 			letterGen.generateLetters(citizenList);
-			assertEquals("todo","todo");
+			assertEquals("todo", "todo");
 			// TODO
 		} catch (IOException e) {
 		}
 	}
-	
+
 	@Test
 	public void letterGenDocxTest() {
 		LetterGen letterGen = new LetterGenDocx();
 		try {
 			letterGen.generateLetters(citizenList);
-			assertEquals("todo","todo");
+			assertEquals("todo", "todo");
 			// TODO
 		} catch (IOException e) {
 		}
-		
+
 	}
 
 }

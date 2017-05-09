@@ -7,5 +7,5 @@ import es.uniovi.asw.persistence.model.Citizen;
 public interface CitizenRepository extends JpaRepository<Citizen, Long> {
 
 	Citizen findByEmail(String email);
-	
+
 }

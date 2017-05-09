@@ -2,5 +2,5 @@ package participants;
 
 public interface GetParticipant {
 
-	//info GET/POST
+	// info GET/POST
 }

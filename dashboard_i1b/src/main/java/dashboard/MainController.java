@@ -21,7 +21,6 @@ public class MainController {
 	public static List<String> messages = new ArrayList<>();
 	private static List<SseEmitter> sseEmitters = Collections.synchronizedList(new ArrayList<>());
 
-
 	public static List<SseEmitter> getSseEmitters() {
 		return sseEmitters;
 	}

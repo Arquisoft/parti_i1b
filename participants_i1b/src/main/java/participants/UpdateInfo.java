@@ -2,5 +2,5 @@ package participants;
 
 public interface UpdateInfo {
 
-	//Pedir password GET/POST
+	// Pedir password GET/POST
 }

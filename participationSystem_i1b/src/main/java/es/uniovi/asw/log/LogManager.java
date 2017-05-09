@@ -1,13 +1,12 @@
 package es.uniovi.asw.log;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 
 public class LogManager {
 
-
-	public void addToLog(String line)
-	{
+	public void addToLog(String line) {
 		BufferedWriter writer = null;
 		try {
 
@@ -16,15 +15,15 @@ public class LogManager {
 			if (!logsDir.exists()) {
 				logsDir.mkdir();
 			}
-			//path to the file
+			// path to the file
 			File logFile = new File("logs/errors.log");
 
 			// Check message
-			//System.out.println("Updating log file");
+			// System.out.println("Updating log file");
 
-			//add the data
-			writer = new BufferedWriter(new FileWriter(logFile,true));
-			writer.write(line+"\n");
+			// add the data
+			writer = new BufferedWriter(new FileWriter(logFile, true));
+			writer.write(line + "\n");
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

@@ -19,8 +19,8 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 @Entity
-@Table (name="Proposal")
-public class Proposal implements Serializable{
+@Table(name = "Proposal")
+public class Proposal implements Serializable {
 
 	/**
 	 * 
@@ -33,20 +33,21 @@ public class Proposal implements Serializable{
 	private String title;
 	private String description;
 	@ManyToOne
-	private Citizen citizen; //the citizen that creates it
+	private Citizen citizen; // the citizen that creates it
 	private int score;
 	private Date creationDate;
-	@OneToMany(mappedBy="proposal", cascade={CascadeType.ALL})
-	private List<Comment> comments= new ArrayList<Comment>();
-	@OneToMany(mappedBy="proposal", cascade={CascadeType.ALL})
+	@OneToMany(mappedBy = "proposal", cascade = { CascadeType.ALL })
+	private List<Comment> comments = new ArrayList<Comment>();
+	@OneToMany(mappedBy = "proposal", cascade = { CascadeType.ALL })
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<VoteProposal> votes= new ArrayList<VoteProposal>();
+	private List<VoteProposal> votes = new ArrayList<VoteProposal>();
 	@Transient
 	private Boolean notified = false;
 	@ManyToOne
 	private Category category;
 
-	protected Proposal() {}
+	protected Proposal() {
+	}
 
 	public Proposal(String title, String description, Citizen citizen, int score, Date creationDate, Category cat) {
 		super();
@@ -115,32 +116,29 @@ public class Proposal implements Serializable{
 		return new ArrayList<VoteProposal>(votes);
 	}
 
-	List<VoteProposal> _getVotes() {
+	public List<VoteProposal> _getVotes() {
 		return votes;
 	}
 
 	public void setVotes(List<VoteProposal> votes) {
-		if(votes.isEmpty())
-		{
+		if (votes.isEmpty()) {
 			this.votes = new ArrayList<VoteProposal>();
-		}
-		else{
-			for(VoteProposal vote: votes)
-			{
-				Association.Voting.linkProposal(citizen, vote, this);		
+		} else {
+			for (VoteProposal vote : votes) {
+				Association.Voting.linkProposal(citizen, vote, this);
 			}
 		}
 	}
 
-	void _setVotes(List<VoteProposal> votes)
-	{
+	public void _setVotes(List<VoteProposal> votes) {
 		this.votes = votes;
 	}
 
-	void _setCitizen(Citizen citizen2) {
-		this.citizen=citizen2;
+	public void _setCitizen(Citizen citizen2) {
+		this.citizen = citizen2;
 
 	}
+
 	public void setCitizen(Citizen citizen) {
 		Association.Propose.link(citizen, this);
 	}
@@ -153,7 +151,7 @@ public class Proposal implements Serializable{
 		Association.CategorizeProposal.link(category, this);
 	}
 
-	void _setCategory(Category category){
+	public void _setCategory(Category category) {
 		this.category = category;
 	}
 

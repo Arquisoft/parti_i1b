@@ -31,7 +31,7 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	@Autowired
 	private ForbiddenWordsService forbiddenWordsService;
 	@Autowired
-	private AdministratorService administratorService;	
+	private AdministratorService administratorService;
 
 	@Override
 	public CitizenService getCitizenService() {
@@ -72,5 +72,5 @@ public class ServicesFactoryImpl implements ServicesFactory {
 	public AdministratorService getAdministratorService() {
 		return administratorService;
 	}
-	
+
 }

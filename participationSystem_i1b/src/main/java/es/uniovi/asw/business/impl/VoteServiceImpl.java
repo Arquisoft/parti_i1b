@@ -11,7 +11,7 @@ import es.uniovi.asw.persistence.model.Citizen;
 import es.uniovi.asw.persistence.model.Vote;
 
 @Service
-public class VoteServiceImpl implements VoteService{
+public class VoteServiceImpl implements VoteService {
 
 	@Autowired
 	private Factories factories;
@@ -20,13 +20,14 @@ public class VoteServiceImpl implements VoteService{
 	public void save(Vote vote) {
 		factories.getPersistenceFactory().getVoteRepository().save(vote);
 	}
-	//cast it to voteComment when u iterate over it
+
+	// cast it to voteComment when u iterate over it
 	@Override
 	public List<Vote> findCommentVotesByCitizen(Citizen citizen) {
 		return factories.getPersistenceFactory().getVoteRepository().findCommentVotesByCitizen(citizen);
 	}
 
-	//cast it to ProposalComment when u iterate over it
+	// cast it to ProposalComment when u iterate over it
 	@Override
 	public List<Vote> findProposalVotesByCitizen(Citizen citizen) {
 		return factories.getPersistenceFactory().getVoteRepository().findProposalVotesByCitizen(citizen);

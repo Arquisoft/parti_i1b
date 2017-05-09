@@ -45,9 +45,9 @@ public class Voter {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-	
+
 	@Override
-	public String toString(){
+	public String toString() {
 		return String.format("%s,%s,%s,%s", getName(), getVote(), getProposal(), getComment());
 	}
 }

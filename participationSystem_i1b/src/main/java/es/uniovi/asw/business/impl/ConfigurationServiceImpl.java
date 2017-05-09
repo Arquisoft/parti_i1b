@@ -12,7 +12,7 @@ import es.uniovi.asw.persistence.model.Configuration;
 import es.uniovi.asw.persistence.model.ForbiddenWords;
 
 @Service
-public class ConfigurationServiceImpl implements ConfigurationService{
+public class ConfigurationServiceImpl implements ConfigurationService {
 
 	@Autowired
 	private Factories factories;
@@ -25,17 +25,17 @@ public class ConfigurationServiceImpl implements ConfigurationService{
 	@Override
 	public Configuration actualConfiguration() {
 		List<Configuration> confs = factories.getPersistenceFactory().getConfigurationRepository().findAll();
-		if(confs.size() == 0)
-		{
+		if (confs.size() == 0) {
 			return new Configuration();
 		}
-		return confs.get(confs.size()-1);
+		return confs.get(confs.size() - 1);
 	}
 
 	@Override
 	public void delete(Configuration conf) {
 		factories.getPersistenceFactory().getConfigurationRepository().delete(conf);
 	}
+
 	@Override
 	public Set<ForbiddenWords> getForbiddenWords(Configuration conf) {
 		return conf.getForbiddenWords();

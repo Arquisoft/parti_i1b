@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table (name="ForbiddenWords")
+@Table(name = "ForbiddenWords")
 public class ForbiddenWords {
 
 	@Id
@@ -16,15 +16,14 @@ public class ForbiddenWords {
 	private String word;
 	@ManyToOne
 	private Configuration conf;
-	
-	public ForbiddenWords(){}
+
+	public ForbiddenWords() {
+	}
 
 	public ForbiddenWords(String word, Configuration conf) {
 		this.word = word;
 		setConf(conf);
 	}
-	
-	
 
 	@Override
 	public int hashCode() {
@@ -66,10 +65,9 @@ public class ForbiddenWords {
 	public void setConf(Configuration conf) {
 		Association.ConfigureForbiddenWords.link(conf, this);
 	}
-	
-	void _setConf(Configuration conf){
+
+	void _setConf(Configuration conf) {
 		this.conf = conf;
 	}
-	
-	
+
 }

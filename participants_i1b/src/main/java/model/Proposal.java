@@ -7,18 +7,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Proposal extends Commentable{
-	
+public class Proposal extends Commentable {
+
 	private String description;
-	
+
 	@ManyToOne
 	private Citizen citizen;
-	@OneToMany(mappedBy="proposal")
+	@OneToMany(mappedBy = "proposal")
 	private Set<Vote> votes;
-	
-	Proposal(){}
-	
-	public Proposal(String desription, Citizen citizen){
+
+	Proposal() {
+	}
+
+	public Proposal(String desription, Citizen citizen) {
 		this.description = desription;
 	}
 
@@ -62,9 +63,5 @@ public class Proposal extends Commentable{
 			return false;
 		return true;
 	}
-	
-	
-	
-	
 
 }

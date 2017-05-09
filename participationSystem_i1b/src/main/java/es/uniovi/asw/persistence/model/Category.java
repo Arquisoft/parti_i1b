@@ -11,17 +11,18 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Category")
+@Table(name = "Category")
 public class Category {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String name;
-	@OneToMany(mappedBy="category", fetch = FetchType.EAGER)
-	private List<Proposal> proposals= new ArrayList<Proposal>();
-	
-	public Category(){}
-	
+	@OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
+	private List<Proposal> proposals = new ArrayList<Proposal>();
+
+	public Category() {
+	}
+
 	public Category(String name) {
 		this.name = name;
 	}
@@ -37,8 +38,8 @@ public class Category {
 	public List<Proposal> getProposals() {
 		return new ArrayList<Proposal>(proposals);
 	}
-	
-	List<Proposal> _getProposals() {
+
+	public List<Proposal> _getProposals() {
 		return proposals;
 	}
 
@@ -75,7 +76,5 @@ public class Category {
 			return false;
 		return true;
 	}
-	
-	
 
 }

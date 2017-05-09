@@ -13,10 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
-
 @Entity
-@Table (name="Comment")
+@Table(name = "Comment")
 public class Comment {
 	@Id
 	@GeneratedValue
@@ -28,10 +26,11 @@ public class Comment {
 	private Citizen citizen;
 	private Date creationDate;
 	private int score;
-	@OneToMany(mappedBy="comment", fetch = FetchType.EAGER, cascade={CascadeType.ALL})
-	private List<VoteComment> votes= new ArrayList<VoteComment>();
-	
-	public Comment(){}
+	@OneToMany(mappedBy = "comment", fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+	private List<VoteComment> votes = new ArrayList<VoteComment>();
+
+	public Comment() {
+	}
 
 	public Comment(String text, Proposal proposal, Citizen citizen, Date creationDate, int score) {
 		this.text = text;
@@ -102,11 +101,9 @@ public class Comment {
 		Association.Commenting.link(this.citizen, this);
 	}
 
-	void _setCitizen(Citizen citizen) {
-	
-		this.citizen=citizen;
+	public void _setCitizen(Citizen citizen) {
 
-		
+		this.citizen = citizen;
 	}
 
 	public Date getCreationDate() {
@@ -141,5 +138,5 @@ public class Comment {
 	public String toString() {
 		return text;
 	}
-	
+
 }

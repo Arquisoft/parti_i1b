@@ -10,8 +10,8 @@ import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Citizen;
 
 @Service
-public class CitizenServiceImpl implements CitizenService{
-	
+public class CitizenServiceImpl implements CitizenService {
+
 	@Autowired
 	private Factories factories;
 
@@ -32,7 +32,7 @@ public class CitizenServiceImpl implements CitizenService{
 
 	@Override
 	public Citizen findByEmail(String email) {
-		
+
 		return factories.getPersistenceFactory().getCitizenRepository().findByEmail(email);
 	}
 
@@ -40,7 +40,7 @@ public class CitizenServiceImpl implements CitizenService{
 	public Citizen checkLogin(String email, String pass) {
 		Citizen c = null;
 		c = findByEmail(email);
-		if(c != null && c.getPassword().equals(pass)) {
+		if (c != null && c.getPassword().equals(pass)) {
 			return c;
 		}
 		return null;

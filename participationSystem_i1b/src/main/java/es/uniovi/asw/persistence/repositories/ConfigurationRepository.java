@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import es.uniovi.asw.persistence.model.Configuration;
 
-public interface ConfigurationRepository extends JpaRepository<Configuration, Long>{
+public interface ConfigurationRepository extends JpaRepository<Configuration, Long> {
 
 }

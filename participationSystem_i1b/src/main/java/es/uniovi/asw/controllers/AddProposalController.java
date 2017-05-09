@@ -31,7 +31,7 @@ public class AddProposalController {
 	private String categoryName;
 	private Category category;
 	private List<Category> categories;
-	private List<String> categoriesName=new ArrayList<String>();
+	private List<String> categoriesName = new ArrayList<String>();
 	private List<ForbiddenWords> forbiddenWords;
 
 	@Autowired
@@ -41,8 +41,8 @@ public class AddProposalController {
 
 	@PostConstruct
 	public void init() {
-		categories= factoria.getServicesFactory().getCategoryService().findAll();
-		citizen=(Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
+		categories = factoria.getServicesFactory().getCategoryService().findAll();
+		citizen = (Citizen) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("user");
 		for (Category category : categories) {
 			categoriesName.add(category.getName());
 		}
@@ -51,35 +51,31 @@ public class AddProposalController {
 		title = "";
 		description = "";
 	}
-	
-	public String cancel(){
+
+	public String cancel() {
 		return "cancel";
 	}
 
-	public String addProposal(){
-		if(checkTitle() && checkDescription()){
-			category= factoria.getPersistenceFactory().getCategoryRepository().findByName(categoryName);
-			proposal= new Proposal(title,description,citizen,0,new Date(),category);
-			if(!factoria.getServicesFactory().getProposalService().alreadyExists(proposal))
-			{
+	public String addProposal() {
+		if (checkTitle() && checkDescription()) {
+			category = factoria.getPersistenceFactory().getCategoryRepository().findByName(categoryName);
+			proposal = new Proposal(title, description, citizen, 0, new Date(), category);
+			if (!factoria.getServicesFactory().getProposalService().alreadyExists(proposal)) {
 				factoria.getServicesFactory().getProposalService().save(proposal);
 				sender.sendProposal(proposal);
-				sender.sendToLog("New proposal "+proposal.getTitle()+" created");
+				sender.sendToLog("New proposal " + proposal.getTitle() + " created");
 				return "success";
-			}
-			else {
+			} else {
 				errorProposalAlreadyExists();
-			}			
+			}
 		}
 		return "";
 	}
 
 	private boolean checkDescription() {
-		if(description.length()>0)
-		{			
+		if (description.length() > 0) {
 			for (ForbiddenWords fw : forbiddenWords) {
-				if(description.contains(fw.getWord()))
-				{
+				if (description.contains(fw.getWord())) {
 					errorForbiddenWord(fw);
 					return false;
 				}
@@ -91,13 +87,11 @@ public class AddProposalController {
 
 	}
 
-	private boolean checkTitle(){
-		//System.out.println("checkingTitle");
-		if(title.length()>0)
-		{
+	private boolean checkTitle() {
+		// System.out.println("checkingTitle");
+		if (title.length() > 0) {
 			for (ForbiddenWords fw : forbiddenWords) {
-				if(title.contains(fw.getWord()))
-				{
+				if (title.contains(fw.getWord())) {
 					errorForbiddenWord(fw);
 					return false;
 				}
@@ -109,15 +103,18 @@ public class AddProposalController {
 	}
 
 	private void errorForbiddenWord(ForbiddenWords word) {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "You are using the forbidden word "+word.getWord().toUpperCase()+"!"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+				"You are using the forbidden word " + word.getWord().toUpperCase() + "!"));
 	}
-	
+
 	private void errorProposalAlreadyExists() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The proposal you are trying to create already exists"));
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!",
+				"The proposal you are trying to create already exists"));
 	}
-	
+
 	private void errorEmptyField() {
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The field cannot be empty"));
+		FacesContext.getCurrentInstance().addMessage(null,
+				new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error!", "The field cannot be empty"));
 	}
 
 	public String getTitle() {
@@ -191,7 +188,5 @@ public class AddProposalController {
 	public void setForbiddenWords(List<ForbiddenWords> forbiddenWords) {
 		this.forbiddenWords = forbiddenWords;
 	}
-
-
 
 }

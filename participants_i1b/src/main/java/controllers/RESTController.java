@@ -10,15 +10,15 @@ import model.Citizen;
 @RestController
 public class RESTController {
 
-    @Autowired
+	@Autowired
 	private CitizenController citizenController;
-    
-    @PostMapping("/JSONlogin")
-	public Citizen login(@RequestParam(value="login") String login
-			, @RequestParam(value="password") String password) {
+
+	@PostMapping("/JSONlogin")
+	public Citizen login(@RequestParam(value = "login") String login,
+			@RequestParam(value = "password") String password) {
 		Citizen citizen = citizenController.getParticipant(login, password);
 		return citizen;
-		
+
 	}
-    
+
 }

@@ -7,10 +7,15 @@ import es.uniovi.asw.persistence.model.Proposal;
 
 public interface ProposalService {
 	void save(Proposal proposal);
+
 	void delete(Proposal proposal);
+
 	List<Proposal> findAll();
+
 	List<Comment> findCommentsByProposal(Proposal selectedProposal);
+
 	boolean alreadyExists(Proposal proposal);
+
 	Proposal findByTitle(String title);
 
 }

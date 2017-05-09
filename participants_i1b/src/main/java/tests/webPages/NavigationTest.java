@@ -29,7 +29,7 @@ public class NavigationTest {
 
 	private WebEnvironment port = WebEnvironment.RANDOM_PORT;
 	private TestRestTemplate rt;
-	private Citizen ct1 = new Citizen("user8", "asw8", new Date(), "user8@gmail.com", "6845R", "calle hij","GER", 13);
+	private Citizen ct1 = new Citizen("user8", "asw8", new Date(), "user8@gmail.com", "6845R", "calle hij", "GER", 13);
 	private URL base;
 
 	@Autowired
@@ -50,35 +50,25 @@ public class NavigationTest {
 
 	@Test
 	public void testLoginActionRIGHT() {
-		RequestBuilder requestLogin = 
-				post("/login").param("login", ct1.getEmail()).param("password", ct1.getPassword());
+		RequestBuilder requestLogin = post("/login").param("login", ct1.getEmail()).param("password",
+				ct1.getPassword());
 		rt = new TestRestTemplate();
-		assertThat(rt.postForObject(
-				"http://localhost:"
-		        		+ port
-		        		+ "/login",
-		        		requestLogin, 
-		        		String.class)
-		        .contains(ct1.getFirstName()));
-		assertThat(rt
-		        .postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
-		        .contains(ct1.getLastName()));
-		assertThat(rt
-		        .postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
-		        .contains(ct1.getEmail()));
-		assertThat(rt
-		        .postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
-		        .contains(ct1.getNationality()));
+		assertThat(rt.postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
+				.contains(ct1.getFirstName()));
+		assertThat(rt.postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
+				.contains(ct1.getLastName()));
+		assertThat(rt.postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
+				.contains(ct1.getEmail()));
+		assertThat(rt.postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
+				.contains(ct1.getNationality()));
 	}
 
 	@Test
 	public void testLoginActionWRONG() {
 		rt = new TestRestTemplate();
-		RequestBuilder requestLogin = 
-				post("/login").param("login", "errormail").param("password", "errorPass");
+		RequestBuilder requestLogin = post("/login").param("login", "errormail").param("password", "errorPass");
 
-		assertThat(rt
-		        .postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
-		        .contains("Error 404 user not found!"));
+		assertThat(rt.postForObject("http://localhost:" + port + "/login", requestLogin, String.class)
+				.contains("Error 404 user not found!"));
 	}
 }

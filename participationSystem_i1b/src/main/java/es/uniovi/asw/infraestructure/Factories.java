@@ -6,15 +6,14 @@ import org.springframework.stereotype.Component;
 import es.uniovi.asw.business.ServicesFactory;
 import es.uniovi.asw.persistence.repositories.PersistenceFactory;
 
-
 @Component
 public class Factories {
-	
+
 	@Autowired
-	private  ServicesFactory servicesFactory;
+	private ServicesFactory servicesFactory;
 	@Autowired
-	private  PersistenceFactory persistenceFactory;
-	
+	private PersistenceFactory persistenceFactory;
+
 	public ServicesFactory getServicesFactory() {
 		return servicesFactory;
 	}

@@ -10,8 +10,8 @@ import es.uniovi.asw.infraestructure.Factories;
 import es.uniovi.asw.persistence.model.Category;
 
 @Service
-public class CategoryServiceImpl implements CategoryService{
-	
+public class CategoryServiceImpl implements CategoryService {
+
 	@Autowired
 	private Factories factories;
 
@@ -24,9 +24,7 @@ public class CategoryServiceImpl implements CategoryService{
 	public void delete(Category category) {
 		try {
 			factories.getPersistenceFactory().getCategoryRepository().delete(category);
-		}
-		catch (IllegalArgumentException e)
-		{
+		} catch (IllegalArgumentException e) {
 			System.out.println("There is no such category in the database");
 		}
 	}

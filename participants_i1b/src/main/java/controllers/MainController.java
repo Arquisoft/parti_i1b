@@ -28,23 +28,21 @@ public class MainController {
 
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
-		Citizen citizen = citizenController.getParticipant(login, password);	
-		if(citizen==null) {
-			model.addAttribute("citizen", new Citizen(" "," ",new Date(),login," "," "," ",5));
+		Citizen citizen = citizenController.getParticipant(login, password);
+		if (citizen == null) {
+			model.addAttribute("citizen", new Citizen(" ", " ", new Date(), login, " ", " ", " ", 5));
 			return "error";
-		}else{
+		} else {
 			model.addAttribute("citizen", citizen);
 		}
-		
-		return "info";
-		
-	}
 
+		return "info";
+
+	}
 
 	@PostMapping(value = "/info", produces = "application/json")
 	public String mostrarInfo(@RequestBody Model model) {
 		return "info";
 	}
-
 
 }

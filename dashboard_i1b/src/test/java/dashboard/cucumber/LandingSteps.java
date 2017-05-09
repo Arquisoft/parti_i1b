@@ -24,21 +24,20 @@ import dashboard.model.Voter;
 @ContextConfiguration(classes = Application.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class LandingSteps {
-	
-	
+
 	protected WebDriver driver = new HtmlUnitDriver();
 	protected String baseUrl = "http://localhost:8090/";
-	
+
 	@Autowired
-	private KafkaVoterSender sender;	
-	
+	private KafkaVoterSender sender;
+
 	@Given("^a list of voters:$")
 	public void aListOfProposals(List<Voter> voters) throws Throwable {
 		driver.get(baseUrl);
 		Thread.sleep(2000);
 		assertNotNull(driver.findElement(By.id("myTableLike")));
-			
-		for(Voter v : voters){
+
+		for (Voter v : voters) {
 			sender.sendTestVoter(v);
 		}
 	}
@@ -47,9 +46,8 @@ public class LandingSteps {
 	public void databaseContainsAtLeastOneProposal(DataTable voters) throws Throwable {
 		driver.get(baseUrl);
 		Thread.sleep(2000);
-		for(Voter v : voters.asList(Voter.class))
-		assertNotNull(driver.findElements(By
-				.xpath("//*[contains(text(),'" + v.getName() + "')]")));
+		for (Voter v : voters.asList(Voter.class))
+			assertNotNull(driver.findElements(By.xpath("//*[contains(text(),'" + v.getName() + "')]")));
 
 	}
 

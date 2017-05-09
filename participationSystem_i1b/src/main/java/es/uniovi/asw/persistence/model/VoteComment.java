@@ -7,13 +7,13 @@ import javax.persistence.Table;
 
 @Entity
 @DiscriminatorValue("C")
-@Table(name="VoteComment")
-public class VoteComment extends Vote{
+@Table(name = "VoteComment")
+public class VoteComment extends Vote {
 
 	@ManyToOne
 	private Comment comment;
 
-	public VoteComment(){
+	public VoteComment() {
 
 	}
 
@@ -23,7 +23,7 @@ public class VoteComment extends Vote{
 		Association.Voting.linkComment(super.getCitizen(), this, comment);
 	}
 
-	public void setComment(Comment comment){
+	public void setComment(Comment comment) {
 		Association.Voting.linkComment(super.getCitizen(), this, comment);
 	}
 
@@ -57,20 +57,15 @@ public class VoteComment extends Vote{
 		if (getClass() != obj.getClass())
 			return false;
 		VoteComment other = (VoteComment) obj;
-		if(super.getCitizen().equals(other.getCitizen())) {
-			if (comment == null)
-			{
+		if (super.getCitizen().equals(other.getCitizen())) {
+			if (comment == null) {
 				if (other.comment != null)
 					return false;
-			} 
-			else if (!comment.equals(other.comment))
+			} else if (!comment.equals(other.comment))
 				return false;
 			return true;
 		}
 		return false;
 	}
-
-
-
 
 }

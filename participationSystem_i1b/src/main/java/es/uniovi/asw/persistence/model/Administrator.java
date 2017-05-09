@@ -6,15 +6,16 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table (name = "Administrator")
+@Table(name = "Administrator")
 public class Administrator {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String username;
 	private String password;
-	
-	public Administrator(){}
+
+	public Administrator() {
+	}
 
 	public Administrator(String username, String password) {
 		this.username = username;
@@ -36,6 +37,5 @@ public class Administrator {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
 
 }

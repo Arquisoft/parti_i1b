@@ -15,7 +15,7 @@ public class LetterGenDocx implements LetterGen {
 
 	@Override
 	public void generateLetters(List<Citizen> citizens) throws IOException {
-		for (Citizen citizen: citizens) {			
+		for (Citizen citizen : citizens) {
 			XWPFDocument letter = new XWPFDocument();
 			XWPFParagraph paragraph = letter.createParagraph();
 			XWPFRun textRun = paragraph.createRun();
@@ -23,7 +23,7 @@ public class LetterGenDocx implements LetterGen {
 			textRun.addCarriageReturn();
 			textRun.setText(citizen.getUnhashedPassword());
 			textRun.setFontSize(12);
-			letter.write(new FileOutputStream(new File("letters/"+citizen.getEmail()+".docx")));
+			letter.write(new FileOutputStream(new File("letters/" + citizen.getEmail() + ".docx")));
 			letter.close();
 			// Deleting unhashed password after letter generation
 			citizen.setUnhashedPassword("");

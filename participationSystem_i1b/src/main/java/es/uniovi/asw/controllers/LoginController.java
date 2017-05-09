@@ -17,47 +17,49 @@ public class LoginController {
 	private String pass;
 	@Autowired
 	private Factories factoria;
-	
-	public String logIn(){
-		
-//		Administrator admin = new Administrator("admin", "admin");
-//		Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(), "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
-//		nacho.setPassword("nacho");
-//		factoria.getServicesFactory().getCitizenService().save(nacho);
-//		factoria.getServicesFactory().getAdministratorService().save(admin);
-		Citizen cit=factoria.getServicesFactory().getCitizenService().checkLogin(user, pass);
-		if(factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass)!=null) {
+
+	public String logIn() {
+
+		// Administrator admin = new Administrator("admin", "admin");
+		// Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(),
+		// "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
+		// nacho.setPassword("nacho");
+		// factoria.getServicesFactory().getCitizenService().save(nacho);
+		// factoria.getServicesFactory().getAdministratorService().save(admin);
+		Citizen cit = factoria.getServicesFactory().getCitizenService().checkLogin(user, pass);
+		if (factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass) != null) {
 			return "admin";
-		}
-		else if(cit!=null) {
+		} else if (cit != null) {
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", cit);
-			System.out.println("-------------------------------"+cit.getFirstName());
+			System.out.println("-------------------------------" + cit.getFirstName());
 			return "citizen";
-		}
-		else {
+		} else {
 			return "error";
 		}
-//		Citizen cit=factoria.getServicesFactory().getCitizenService().findByEmail(user);
-//		
-//		if(cit!=null && pass.equals(cit.getPassword()))
-//		{
-//			return "success";
-//		}
-//		return "error";
+		// Citizen
+		// cit=factoria.getServicesFactory().getCitizenService().findByEmail(user);
+		//
+		// if(cit!=null && pass.equals(cit.getPassword()))
+		// {
+		// return "success";
+		// }
+		// return "error";
 	}
-	
+
 	public String getUser() {
 		return user;
 	}
+
 	public void setUser(String user) {
 		this.user = user;
 	}
+
 	public String getPass() {
 		return pass;
 	}
+
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-	
-	
+
 }
