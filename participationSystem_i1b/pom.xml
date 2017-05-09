@@ -5,13 +5,31 @@
 
 	<artifactId>participationSystem_i1b</artifactId>
 	<name>participationSystem_i1b</name>
-	<version>0.0.1</version>
+	<version>1.RELEASE</version>
 
 	<parent>
 		<groupId>es.uniovi.asw</groupId>
 		<artifactId>parti_i1b</artifactId>
 		<version>1</version>
 	</parent>
+
+	<profiles>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<activatedProperties>prod</activatedProperties>
+			</properties>
+		</profile>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<activatedProperties>dev</activatedProperties>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -231,6 +249,12 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
+		<resources>
+			<resource>
+				<filtering>true</filtering>
+				<directory>src/main/resources</directory>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -270,6 +294,7 @@
 
 				<executions>
 					<execution>
+						<phase>test</phase>
 						<goals>
 							<goal>execute</goal>
 						</goals>

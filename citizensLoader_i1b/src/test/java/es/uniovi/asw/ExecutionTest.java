@@ -64,7 +64,7 @@ public class ExecutionTest {
 
 		List<Citizen> insertedCitizens = inserter.insert(citizensInfo);
 
-		assertEquals(2, insertedCitizens.size());
+		assertEquals(0, insertedCitizens.size());
 		assertEquals(nacho, Parser.citizenRepository.findByNif("71729768J"));
 		assertEquals(gabriel, Parser.citizenRepository.findByNif("55433455B"));
 

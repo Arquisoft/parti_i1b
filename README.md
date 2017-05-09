@@ -23,3 +23,15 @@ Provided you have Maven and Git you just have to:
  cd parti_i1b
  mvn package
 ```
+### Production and Develop profiles
+There are two profiles called production and develop.  Develop is the
+default one and it configures the application to use the local
+database and kafka instances. If the production profile is chosen then
+it will connect to the remote server.
+
+The production profile may fail some tests as it expects a clean kafka
+and mysql environments.
+```
+mvn package -P prod
+mvn package -P dev
+```
