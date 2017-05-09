@@ -15,6 +15,7 @@ local.properties
 # CitizensLoader files
 *.pdf
 *.log
+*.logs
 *.docx
 *.txt
 

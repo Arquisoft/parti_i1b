@@ -62,7 +62,4 @@ public class KafkaSender {
 		send("Dashboard", text);
 	}
 
-	// public void sendTestVoter(Voter voter) {
-	// send("Voter", voter.toString());
-	// }
 }

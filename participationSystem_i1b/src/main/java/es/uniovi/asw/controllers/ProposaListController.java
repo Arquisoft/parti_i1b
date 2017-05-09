@@ -125,7 +125,6 @@ public class ProposaListController {
 	public List<Comment> showComments(String sorting) {
 
 		comments = factoria.getServicesFactory().getProposalService().findCommentsByProposal(selectedProposal);
-
 		if ("score".equals(sorting)) {
 			Collections.sort(comments, Comparator.comparing(Comment::getScore));
 		} else if ("date".equals(sorting)) {
