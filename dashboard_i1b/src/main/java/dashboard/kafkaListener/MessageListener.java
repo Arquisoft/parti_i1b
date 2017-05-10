@@ -1,4 +1,4 @@
-package dashboard.listeners;
+package dashboard.kafkaListener;
 
 import java.io.IOException;
 
