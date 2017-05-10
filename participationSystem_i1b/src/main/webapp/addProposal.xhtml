@@ -8,17 +8,17 @@
 	<h:body>
 		<center>
 			<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
-			<h:form style="margin-top: 50px">
+			<h:form id="panelgrid" style="margin-top: 50px">
 				<p:panel id="panel" header="Proposal Form"
 					style="margin-bottom:10px; width:50%">
 					<h:panelGrid columns="3" cellpadding="5">
 						<h:outputLabel value="Title:"></h:outputLabel>
-						<p:inputText value="#{addProposal.title}" >
+						<p:inputText id="titletext" value="#{addProposal.title}" >
 						</p:inputText>
 						<br />
 						<br />
 						<h:outputLabel value="Description:    "></h:outputLabel>
-						<p:inputTextarea rows="5" cols="30" counter="display"
+						<p:inputTextarea id="desctext" rows="5" cols="30" counter="display"
 							value="#{addProposal.description}" maxlength="200"
 							counterTemplate="{0} characters remaining." autoResize="false"/>
 						<h:outputText id="display" />
@@ -33,7 +33,7 @@
 					<p:messages id="message" showDetail="true" autoUpdate="true"
 						closable="true" />
 						<h:commandButton value="Cancel" action="#{addProposal.cancel}" />
-					<h:commandButton value="Save" action="#{addProposal.addProposal}" />
+					<h:commandButton id="saveprob" value="Save" action="#{addProposal.addProposal}" />
 					<br />
 					
 				</p:panel>

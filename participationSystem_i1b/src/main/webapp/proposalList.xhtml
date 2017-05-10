@@ -4,6 +4,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:head>
+		  <title>Citizens Loader - Citizen Proposal List</title>
 	</h:head>
 	<h:body>
 		<center>
@@ -11,7 +12,7 @@
 				<h1 class="title ui-widget-header ui-corner-all">Participation Voting System</h1>
 				<p:button value="Log Out" href="index.xhtml" action="#{loginController.logOut}"/>
 			</div>
-			<h:form>
+			<h:form id="formAdd">
 				<p:dataTable id="tablaListaProposals" var="proposal"
 					value="#{ProposalListController.showProposals()}"
 					sortMode="multiple" rows="8" paginator="true"
