@@ -1,4 +1,4 @@
-package dashboard.listeners;
+package dashboard.kafkaListener;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

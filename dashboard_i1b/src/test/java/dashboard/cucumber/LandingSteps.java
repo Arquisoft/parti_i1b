@@ -17,7 +17,7 @@ import cucumber.api.DataTable;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import dashboard.Application;
-import dashboard.listeners.KafkaVoterSender;
+import dashboard.kafkaListener.KafkaVoterSender;
 import dashboard.model.Voter;
 
 @RunWith(SpringJUnit4ClassRunner.class)
