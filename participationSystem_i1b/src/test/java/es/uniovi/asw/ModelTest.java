@@ -3,6 +3,7 @@ package es.uniovi.asw;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -137,7 +138,7 @@ public class ModelTest {
 				"emasdssssilNacho@test.com", "769768J", "mi casa", "española", 47);
 
 		service1.save(matheusss);
-
+		assertTrue(matheusss.equals(matheusss));
 		assertNotNull(service1.findAll());
 
 		service1.delete(matheusss);
