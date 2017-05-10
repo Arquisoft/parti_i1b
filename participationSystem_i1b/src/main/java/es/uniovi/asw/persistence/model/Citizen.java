@@ -13,7 +13,6 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "Citizen")
@@ -32,8 +31,6 @@ public class Citizen {
 	private String nationality;
 	private int pollingStationCode;
 	private String password;
-	@Transient
-	private String unhashedPassword;
 	@OneToMany(mappedBy = "citizen")
 	private List<Proposal> proposals = new ArrayList<Proposal>();
 	@OneToMany(mappedBy = "citizen")
@@ -99,14 +96,6 @@ public class Citizen {
 
 	public int getpollingStationCode() {
 		return pollingStationCode;
-	}
-
-	public String getUnhashedPassword() {
-		return unhashedPassword;
-	}
-
-	public void setUnhashedPassword(String unhashedPassword) {
-		this.unhashedPassword = unhashedPassword;
 	}
 
 	@Override

@@ -10,6 +10,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.Query;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +60,7 @@ public class ModelTest {
 		return date;
 	}
 
+	
 	@Test
 	public void testCitizen() {
 
@@ -132,20 +139,15 @@ public class ModelTest {
 
 		CitizenService service1 = servicesFactory.getCitizenService();
 
-		Citizen juaaaan = new Citizen("Gabriasdael", "Reguasdero", createDate("31/12/1995"),
-				"emadssddilGabriel@test.com", "5543325B", "dd", "dd", 2);
 		Citizen matheusss = new Citizen("Naasdcho", "Fernasdandez", createDate("08/01/1995"),
 				"emasdssssilNacho@test.com", "769768J", "mi casa", "española", 47);
 
-		service1.save(juaaaan);
 		service1.save(matheusss);
 
 		assertNotNull(service1.findAll());
 
-		service1.delete(juaaaan);
 		service1.delete(matheusss);
 
-		assertNull(service1.findByEmail(juaaaan.getEmail()));
 		assertNull(service1.findByEmail(matheusss.getEmail()));
 
 	}
