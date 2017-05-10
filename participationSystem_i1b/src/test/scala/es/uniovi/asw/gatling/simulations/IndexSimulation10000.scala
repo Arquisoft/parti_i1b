@@ -6,7 +6,7 @@ import io.gatling.core.Predef._
 import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 
-class IndexSimulation extends Simulation {
+class IndexSimulation10000 extends Simulation {
 
 	val httpProtocol = http
 		.baseURL("http://localhost:8080")
@@ -23,5 +23,5 @@ class IndexSimulation extends Simulation {
 			.get("/")
 			.headers(headers0))
 
-	setUp(scn.inject(atOnceUsers(100))).protocols(httpProtocol)
+	setUp(scn.inject(rampUsers(10000) over(60 seconds))).protocols(httpProtocol)
 }

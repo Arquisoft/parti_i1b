@@ -20,12 +20,6 @@ public class LoginController {
 
 	public String logIn() {
 
-		// Administrator admin = new Administrator("admin", "admin");
-		// Citizen nacho = new Citizen("Nacho", "Fernandez", new Date(),
-		// "emailNacho@test.com", "71729768J", "mi casa", "española", 47);
-		// nacho.setPassword("nacho");
-		// factoria.getServicesFactory().getCitizenService().save(nacho);
-		// factoria.getServicesFactory().getAdministratorService().save(admin);
 		Citizen cit = factoria.getServicesFactory().getCitizenService().checkLogin(user, pass);
 		if (factoria.getServicesFactory().getAdministratorService().checkLogin(user, pass) != null) {
 			return "admin";
@@ -36,14 +30,6 @@ public class LoginController {
 		} else {
 			return "error";
 		}
-		// Citizen
-		// cit=factoria.getServicesFactory().getCitizenService().findByEmail(user);
-		//
-		// if(cit!=null && pass.equals(cit.getPassword()))
-		// {
-		// return "success";
-		// }
-		// return "error";
 	}
 	
 	public String logOut() {

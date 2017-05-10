@@ -310,9 +310,8 @@
 					<runMultipleSimulations>true</runMultipleSimulations>
 				</configuration>
 
-				<executions>
+			<executions>
 					<execution>
-						<phase>test</phase>
 						<goals>
 							<goal>execute</goal>
 						</goals>

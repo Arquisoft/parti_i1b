@@ -18,7 +18,6 @@
 	<modules>
 		<module>citizensLoader_i1b</module>
 		<module>dashboard_i1b</module>
-		<module>participants_i1b</module>
 		<module>participationSystem_i1b</module>
 	</modules>
 
